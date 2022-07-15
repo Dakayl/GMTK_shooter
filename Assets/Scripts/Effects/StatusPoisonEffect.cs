@@ -4,4 +4,9 @@ public class StatusPoisonffect:IDiceEffect {
     {
         PlayerStats.Instance.ActivatePoison();
     }
+
+    public override string ToString()
+    {
+        return "<Poison Effect>";
+    }
 }

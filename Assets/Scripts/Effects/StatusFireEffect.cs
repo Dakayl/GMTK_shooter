@@ -4,4 +4,9 @@ public class StatusFireEffect:IDiceEffect {
     {
         PlayerStats.Instance.ActivateFire(); 
     }
+
+    public override string ToString()
+    {
+        return "<Fire Effect>";
+    }
 }
