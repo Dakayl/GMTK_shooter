@@ -7,16 +7,16 @@ public class Enemy : MonoBehaviour
 
     private bool isOnFire = false;
     private bool isOnPoison = false;
-    private int lifePoints = 100;
+    private float lifePoints = 100;
 
-    public isShot(int damage, bool isFire, bool isPoison) {
+    public void isShot(float damage, bool isFire, bool isPoison) {
         if(isFire) {
             isOnFire = true;
         }
         if(isPoison) {
             isOnPoison = true;
         }
-        lifePoints -= bullet.damage;
+        lifePoints -= damage;
     }
 
 }

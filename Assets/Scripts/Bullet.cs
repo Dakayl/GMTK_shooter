@@ -9,14 +9,14 @@ public class Bullet : MonoBehaviour
     private bool isBouncingBullet;
     private bool isFireBullet;
     private bool isPoisonBullet;
-    private int damage;
+    private float damage;
 
     public void Awake(){
         isPiercingBullet = PlayerStats.Instance.isPiercingActivated;
-        isBouncingBullet = PlayerStats.Instance.isBouncingActivated
+        isBouncingBullet = PlayerStats.Instance.isBouncingActivated;
         isFireBullet =  PlayerStats.Instance.isFireActivated;
         isPoisonBullet = PlayerStats.Instance.isPoisonActivated;
-        damage = PlayerStats.Instance.attackDamage;;
+        damage = PlayerStats.Instance.attackDamage;
     }
 
     public void OnEnemyCollision(Enemy enemy){

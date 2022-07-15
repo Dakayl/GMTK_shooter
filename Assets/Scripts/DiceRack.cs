@@ -10,19 +10,32 @@ public class DiceRack : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-          
+          Dice one = new Dice();
+          one.CreateInteractionDice();
+          AddDice(one);
+
+          Dice two = new Dice();
+          two.CreateShootDice();
+          AddDice(two);
+
+          Dice three = new Dice();
+          three.CreateStatusDice();
+          AddDice(three);
+
+          Reset();
+          Randomize();
     }
 
-    public AddDice(Dice newDice){
-        diceRack.Add(newDice)
+    public void AddDice(Dice newDice){
+        diceRack.Add(newDice);
     }
 
-    public Reset(){
-        PlayerStats.Instance.reset();
+    public void Reset(){
+        PlayerStats.Instance.Reset();
     }
 
-    public Randomize(){
-        for(int index = 0; i++; index < diceRack.Count) {
+    public void Randomize(){
+        for(int index = 0; index < diceRack.Count; index++ ) {
             diceRack[index].SelectRandomFace();
         }
     }
