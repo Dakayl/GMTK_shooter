@@ -36,7 +36,6 @@ public class DiceRack : MonoBehaviour
     }
 
     public void Reset(){
-       
         PlayerStats.Instance.ResetStats();
     }
 
@@ -46,7 +45,14 @@ public class DiceRack : MonoBehaviour
             DiceFace face = diceRack[index].SelectRandomFace();
             currentFaces.Add(face);
         }
+        DebugMe();
+    }
+
+    public void DebugMe(){
         Debug.Log(this);
+        Debug.Log(PlayerStats.Instance.isPiercingActivated+"-"+PlayerStats.Instance.isBouncingActivated);
+        Debug.Log(PlayerStats.Instance.isFireActivated+"-"+PlayerStats.Instance.isPoisonActivated);
+        Debug.Log(PlayerStats.Instance.attackDamage+"/"+PlayerStats.Instance.attackSpeed+"/"+PlayerStats.Instance.attackRange);
     }
 
     public override string ToString()
