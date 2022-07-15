@@ -6,4 +6,9 @@ public class ShootSpeedEffect:IDiceEffect {
     {
         PlayerStats.Instance.attackSpeed += bonusSpeed;
     }
+
+    public override string ToString()
+    {
+        return "<ShootSpeed Effect>";
+    }
 }

@@ -4,6 +4,11 @@ public class ShootRangeEffect:IDiceEffect {
 
     public void ActivateEffect()
     {
-        
+         PlayerStats.Instance.attackRange += bonusRange;
+    }
+
+    public override string ToString()
+    {
+        return "<ShootRange Effect>";
     }
 }

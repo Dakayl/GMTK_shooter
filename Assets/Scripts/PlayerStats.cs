@@ -20,13 +20,14 @@ public class PlayerStats : MonoBehaviour
         Instance = this;
     }
 
-    public void Reset() {
+    public void ResetDiceEffects() {
         isPiercingMode = false;
         isBouncingMode = false;
         isFireMode = false;
         isPoisonMode = false;
         attackDamage = baseAttackDamage;
         attackSpeed = baseAttackSpeed;
+        attackRange = baseAttackRange;
     }
 
     [Header("Defensive stats")]
@@ -57,11 +58,16 @@ public class PlayerStats : MonoBehaviour
     public float baseAttackDamage = 3;          // Entity's base attack damage
     [Tooltip("Entity's base attack speed")]
     public float baseAttackSpeed = 2;           // Entity's base attack per second
+     [Tooltip("Entity's base attack range")]
+    public float baseAttackRange = 25;           // Entity's base range
+
 
     [HideInInspector]
-    public float attackDamage;                  // Entity's attack damage
+    public float attackDamage;                  // Entity's current attack damage
     [HideInInspector]
-    public float attackSpeed;                   // Entity's number of attack per second
+    public float attackSpeed;                   // Entity's current number of attack per second
+    [HideInInspector]
+    public float attackRange;                   // Entity's current attack range
 
     private bool isPiercingMode = false;        // Is Player shooting piercing bullets ?
     public void ActivatePiercing() { isPiercingMode = true; }

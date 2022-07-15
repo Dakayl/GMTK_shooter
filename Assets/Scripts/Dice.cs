@@ -10,16 +10,12 @@ public struct DiceFace {
     }
 }
 
-public class Dice : MonoBehaviour
+public class Dice
 {
     private List<DiceFace> faceList;
     private DiceFace currentFace;
     public DiceFace face { get { return currentFace; }}
     private int currentFaceIndex;
-
-    public void Awake() {
-       
-    }
 
     public void AddFace(DiceFace face){
         faceList.Add(face);
@@ -61,5 +57,10 @@ public class Dice : MonoBehaviour
         currentFace = faceList[index];
         currentFace.effect.ActivateEffect();
         return currentFace;
+    }
+
+    public override string ToString()
+    {
+        return "Dice : "+currentFace.effect;
     }
 }

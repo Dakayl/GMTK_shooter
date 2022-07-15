@@ -4,4 +4,9 @@ public class InteractionBouncingEffect:IDiceEffect {
     {
         PlayerStats.Instance.ActivateBouncing();
     }
+
+    public override string ToString()
+    {
+        return "<Bouncing Effect>";
+    }
 }

@@ -7,9 +7,15 @@ public class DiceRack : MonoBehaviour
 {
     private List<Dice> diceRack;
 
+    private List<DiceFace> currentFaces;
+
     // Start is called before the first frame update
     void Awake()
     {
+          
+          diceRack = new List<Dice>();
+          Reset();
+          
           Dice one = new Dice();
           one.CreateInteractionDice();
           AddDice(one);
@@ -21,8 +27,7 @@ public class DiceRack : MonoBehaviour
           Dice three = new Dice();
           three.CreateStatusDice();
           AddDice(three);
-
-          Reset();
+         
           Randomize();
     }
 
@@ -31,13 +36,26 @@ public class DiceRack : MonoBehaviour
     }
 
     public void Reset(){
-        PlayerStats.Instance.Reset();
+       
+        PlayerStats.Instance.ResetDiceEffects();
     }
 
     public void Randomize(){
+        currentFaces = new List<DiceFace>();
         for(int index = 0; index < diceRack.Count; index++ ) {
-            diceRack[index].SelectRandomFace();
+            DiceFace face = diceRack[index].SelectRandomFace();
+            currentFaces.Add(face);
         }
+        Debug.Log(this);
+    }
+
+    public override string ToString()
+    {
+        string str = "";
+        for(int index = 0; index < diceRack.Count; index++ ) {
+           str += diceRack[index] + " - ";
+        }
+        return str;
     }
 }
 
