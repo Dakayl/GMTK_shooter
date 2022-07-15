@@ -2,32 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
 
     private bool isOnFire = false;
     private bool isOnPoison = false;
     private int lifePoints = 100;
 
-    public isShotBy(Bullet bullet){
-        if(bullet.isFire) {
+    public isShot(int damage, bool isFire, bool isPoison) {
+        if(isFire) {
             isOnFire = true;
         }
-        if(bullet.isPoison) {
+        if(isPoison) {
             isOnPoison = true;
         }
         lifePoints -= bullet.damage;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

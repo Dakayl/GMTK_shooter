@@ -1,7 +1,7 @@
-public class InteractionBounceEffect:IDiceEffect {
+public class InteractionPiercingEffect:IDiceEffect {
     
     public void ActivateEffect()
     {
-        Bullet.isPiercingMode = true;
+       PlayerStats.Instance.ActivatePiercing();
     }
 }

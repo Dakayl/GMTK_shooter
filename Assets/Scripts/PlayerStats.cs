@@ -9,6 +9,26 @@ using UnityEngine;
 /// </summary>
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance { get; private set; } // Singleton
+
+    private void Awake() {
+        if(Instance != null) {
+            Debug.LogError("Multiple PlayerStats Error");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    public void Reset() {
+        isPiercingMode = false;
+        isBouncingMode = false;
+        isFireMode = false;
+        isPoisonMode = false;
+        attackDamage = baseAttackDamage;
+        attackSpeed = baseAttackSpeed;
+    }
+
     [Header("Defensive stats")]
     [Tooltip("Entity's base max HP")]
     public float baseMaxHP = 100;               // Entity's base max HP
@@ -43,7 +63,21 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public float attackSpeed;                   // Entity's number of attack per second
 
+    private bool isPiercingMode = false;        // Is Player shooting piercing bullets ?
+    public void ActivatePiercing() { isPiercingMode = true }
+    public bool isPiercingActivated { get { return isPiercingMode; }}
 
+    private bool isBouncingMode = false;         // Is Player shooting bouncing bullets ?
+    public void ActivateBouncing() { isBouncingMode = true }
+    public bool isBoucingActivated { get { return isBouncingMode; }}
+
+    private bool isFireMode = false;             // Is Player shooting fire bullets ?
+    public void ActivateFire() { isFireMode = true }
+    public bool isFireActivated { get { return isFireMode; }}
+    
+    private bool isPoisonMode = false;         // Is Player shooting poison bullets ?
+    public void ActivatePoison() { isPoisonMode = true }
+    public bool isPoisonActivated { get { return isPiercingMode; }}
 
     [Header("Mobility stats")]
     [Tooltip("Entity's base run speed")]

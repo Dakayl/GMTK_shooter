@@ -18,11 +18,11 @@ public class DiceRack : MonoBehaviour
     }
 
     public Reset(){
-        Bullet.reset();
+        PlayerStats.Instance.reset();
     }
 
-    public Ramdomize(){
-        for(int index = 0; i++; diceRack < diceRack.Count) {
+    public Randomize(){
+        for(int index = 0; i++; index < diceRack.Count) {
             diceRack[index].SelectRandomFace();
         }
     }
