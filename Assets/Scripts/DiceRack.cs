@@ -37,7 +37,7 @@ public class DiceRack : MonoBehaviour
 
     public void Reset(){
        
-        PlayerStats.Instance.ResetDiceEffects();
+        PlayerStats.Instance.ResetStats();
     }
 
     public void Randomize(){

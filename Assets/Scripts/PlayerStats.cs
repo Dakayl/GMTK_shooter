@@ -57,7 +57,7 @@ public class PlayerStats : MonoBehaviour
 
     private bool isBouncingMode = false;         // Is Player shooting bouncing bullets ?
     public void ActivateBouncing() { isBouncingMode = true; }
-    public bool isBoucingActivated { get { return isBouncingMode; }}
+    public bool isBouncingActivated { get { return isBouncingMode; }}
 
     private bool isFireMode = false;             // Is Player shooting fire bullets ?
     public void ActivateFire() { isFireMode = true; }
