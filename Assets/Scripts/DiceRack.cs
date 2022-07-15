@@ -9,7 +9,7 @@ public class DiceRack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        diceRack = new DiceRack();    
+          
     }
 
     // Update is called once per frame
