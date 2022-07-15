@@ -10,7 +10,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; } // Singleton
-
+    #region Variables
     private void Awake() {
         if(Instance != null) {
             Debug.LogError("Multiple PlayerStats Error");
@@ -19,7 +19,6 @@ public class PlayerStats : MonoBehaviour
         }
         Instance = this;
     }
-
     public void Reset() {
         isPiercingMode = false;
         isBouncingMode = false;
@@ -86,5 +85,79 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public float runSpeed;                      // Entity's run speed
 
+    #endregion
 
+
+    #region MonoBehavior Methods
+
+    private void Start()
+    {
+        ResetStats();
+        HealToFull();
+
+    }
+
+    #endregion
+
+    #region Public Functions
+
+    /// <summary>
+    /// Heal player to full
+    /// </summary>
+    public void HealToFull()
+    {
+        currentHP = maxHP;
+    }
+
+    /// <summary>
+    /// Reset all player stats to their default values
+    /// </summary>
+    public void ResetStats()
+    {
+        // Setting all current values to base values
+        maxHP = baseMaxHP;
+        armor = baseArmor;
+        invinvicilityFramesDuration = baseInvinvicilityFramesDuration;
+        attackDamage = baseAttackDamage;
+        attackSpeed = baseAttackSpeed;
+        runSpeed = baseRunSpeed;
+    }
+
+    /// <summary>
+    /// Activate invincinbility frames for their default duration
+    /// </summary>
+    public void ActivateInvincinbilityFrames()
+    {
+        StartCoroutine(InvincibilityFrames(invinvicilityFramesDuration));
+    }
+
+    /// <summary>
+    /// Activate invincinbility frames for a custom duration
+    /// </summary>
+    /// <param name="customDuration"></param>
+    public void ActivateInvincinbilityFrames(float customDuration)
+    {
+        StartCoroutine(InvincibilityFrames(customDuration));
+    }
+
+    #endregion
+
+
+    #region Coroutines
+
+    /// <summary>
+    /// Sets invincibilityFrames to true, wait for duration, then set to false
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+    private IEnumerator InvincibilityFrames(float duration)
+    {
+        areInvicibilityFramesActive = true;
+
+        yield return new WaitForSeconds(duration);
+
+        areInvicibilityFramesActive = false;
+    }
+
+    #endregion
 }
