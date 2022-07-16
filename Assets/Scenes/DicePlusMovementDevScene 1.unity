@@ -596,7 +596,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1096153, y: 1}
+    m_SensorSize: {x: 2.1288462, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -845,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &624736057
 RectTransform:
   m_ObjectHideFlags: 0
@@ -883,6 +883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dicePanelPrefab: {fileID: 5731975538730561209, guid: a3481664de9fb6c41919c9fc9b2991df, type: 3}
+  level: {fileID: 41996063}
+  killed: {fileID: 1491095248}
 --- !u!114 &624736059
 MonoBehaviour:
   m_ObjectHideFlags: 0
