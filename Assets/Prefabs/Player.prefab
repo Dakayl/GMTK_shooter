@@ -268,7 +268,7 @@ Transform:
   - {fileID: 7718153282157602978}
   - {fileID: 7718153283519247647}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7718153283945890326
 Rigidbody2D:
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 7718153283711107749}
   projectilePrefab: {fileID: 6062779982876408846, guid: 637c4e3f40fe08f4fb1f26523d6269e0, type: 3}
-  bulletForce: 1
+  bulletForce: 12
 --- !u!70 &7718153283945890330
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

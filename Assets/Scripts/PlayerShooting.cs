@@ -31,7 +31,8 @@ public class PlayerShooting : MonoBehaviour
             }
             
             
-        } else if (isCoolingDown)  // Attack cooldown
+        }
+        if (isCoolingDown)  // Attack cooldown
         {
             coolDownTimer += Time.deltaTime;
             if(coolDownTimer >= 1/ PlayerStats.Instance.attackSpeed)
