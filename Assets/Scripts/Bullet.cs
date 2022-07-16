@@ -50,19 +50,19 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+         Debug.Log(collision.gameObject.tag);
+         if(collision.gameObject.tag == "Enemy")
         {
-            Debug.Log(collision.gameObject.tag);
-            OnEnemyCollision(collision.gameObject.GetComponent<Enemy>(), collision.contacts[0].normal);
+            OnEnemyCollision(collision.gameObject.GetComponent<Enemy>());
         } else if(collision.gameObject.tag == "MapWall"){
-            Debug.Log(collision.gameObject.tag);
-            OnWallCollision(collision.contacts[0].normal);
+
+            OnWallCollision();
         }
     }
 
-    public void OnEnemyCollision(Enemy enemy, Vector2 bounceNormal){
+    public void OnEnemyCollision(Enemy enemy){
         enemy.isShot(damage,isFireBullet, isPoisonBullet, isElectricBullet);
         if(isDraculaBullet){
             float healBack = FightDraculaMode.percentageOfLife * damage;
@@ -74,17 +74,15 @@ public class Bullet : MonoBehaviour
             }
         }
         
-       ManageCollision(bounceNormal);
+       ManageCollision();
     }
 
-    public void OnWallCollision(Vector2 bounceNormal){
-        ManageCollision(bounceNormal);
+    public void OnWallCollision(){
+        ManageCollision();
     }
 
-    public void ManageCollision(Vector2 bounceNormal) {
+    public void ManageCollision() {
          if(isBouncingBullet) {
-            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-            rigidbody.AddForce(bounceNormal*bounceForce);
             lifeDuration += InteractionBouncingEffect.addedLifeDuration;
             isBouncingBullet = false;
             return;

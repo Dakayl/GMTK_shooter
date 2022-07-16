@@ -66,7 +66,7 @@ public class Dice
         currentFaceIndex = index;
         currentFace = faceList[index];
         currentFace.effect.ActivateEffect();
-        Debug.Log("Activate "+currentFace.effect);
+
         return currentFace;
     }
 

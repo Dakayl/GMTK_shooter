@@ -101,6 +101,7 @@ public class Enemy : MonoBehaviour
         //TO DO replace with proper event mgt
         float ratio = currentLifePoints / baselifePoints;
         RectTransform rectTransform = greenbar.GetComponent<RectTransform>();
+        if(ratio < 0.08f) ratio = 0.08f;
         if(rectTransform) {
             rectTransform.sizeDelta = new Vector2 (ratio, 0.14f);
         }
