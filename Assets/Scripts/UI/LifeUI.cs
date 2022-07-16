@@ -15,6 +15,6 @@ public class LifeUI : MonoBehaviour
     void Update()
     {
         float ratio = PlayerStats.Instance.currentHP /  PlayerStats.Instance.maxHP;
-        rectTransform.sizeDelta = new Vector2 (ratio*50, 16);
+        rectTransform.sizeDelta = new Vector2 (ratio*100, 16);
     }
 }

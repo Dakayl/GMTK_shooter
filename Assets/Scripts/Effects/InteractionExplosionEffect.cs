@@ -8,7 +8,7 @@ public class InteractionExplosionEffect:IDiceEffect {
         return "Exploding";
     }
     public string getHtmlText() {
-        return "Your bullets <b>explode</b> on wall and ennemies, dealing extra AOE damages  !";
+        return "Your bullets <b>explode</b> on wall and ennemies, dealing AOE damages !";
     }
     public override string ToString()
     {

@@ -8,7 +8,7 @@ public class InteractionBouncingEffect:IDiceEffect {
         return "Bouncing";
     }
     public string getHtmlText() {
-        return "Your bullets <b>bounce</b> on wall and ennemies !";
+        return "Your bullets <b>bounce</b> once on walls and ennemies !";
     }
     public override string ToString()
     {

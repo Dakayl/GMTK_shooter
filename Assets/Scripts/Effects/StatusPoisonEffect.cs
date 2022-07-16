@@ -1,5 +1,7 @@
 public class StatusPoisonffect:IDiceEffect {
     
+    public static int stackNumber = 1;
+    public static float dotTickDuration  = 2;
     public void ActivateEffect()
     {
         PlayerStats.Instance.ActivatePoison();
@@ -8,7 +10,7 @@ public class StatusPoisonffect:IDiceEffect {
         return "Poison bullets";
     }
     public string getHtmlText() {
-        return "Shoot poisoned bullets, <b>kill ennemies</b> with a stacking dot !";
+        return string.Format("Stack <b>{0} poison</b> per hit, damages apply every <b>{1} sec</b>", stackNumber, dotTickDuration);
     }
     public override string ToString()
     {

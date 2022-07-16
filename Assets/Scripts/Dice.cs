@@ -69,8 +69,17 @@ public class Dice
         return currentFace;
     }
 
+    public string getTitle()
+    {
+        return currentFace.effect.getTitle();
+    }
+    public string getHtmlText()
+    {
+        return currentFace.effect.getHtmlText();
+    }
+
     public override string ToString()
     {
-        return ""+currentFace.effect;
+        return currentFace.effect.ToString();
     }
 }

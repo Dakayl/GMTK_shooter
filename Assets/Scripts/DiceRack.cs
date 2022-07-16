@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class DiceRack : MonoBehaviour
 {
     [SerializeField] private GameObject diceUIPrefab;
+    [SerializeField] private EffectWindowUI effectWindowUI;
     private List<Dice> diceRack;
     private List<DiceFace> currentFaces;
     private List<GameObject> diceUIList;
@@ -27,11 +28,9 @@ public class DiceRack : MonoBehaviour
           AddDice(three);
 
           Dice four = new Dice();
-          four.CreateStatusDice();
+          four.CreateFightDice();
           AddDice(four);
 
-
-          diceUIList = new List<GameObject>();
           CreateDicesUI();
 
     }
@@ -39,14 +38,34 @@ public class DiceRack : MonoBehaviour
     {
         
           Reset();   
-
           Randomize();
-
           ShowDicesUI();
-          
+          effectWindowUI.changeDices(diceRack);
+    }
+
+     // Update is called once per frame
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab)) {
+            effectWindowUI.Show();
+        }
+
+        if(Input.GetKeyUp(KeyCode.Tab)) {
+             effectWindowUI.Hide();
+        }
+    }
+
+    private void cleanDiceUIList(){
+        if(diceUIList != null) {
+            for(int index = 0; index < diceUIList.Count; index++) {
+                Destroy(diceUIList[index]);
+            }
+        }
+        diceUIList = new List<GameObject>();
     }
 
     public void CreateDicesUI(){
+        cleanDiceUIList();
         int diceNumbers = diceRack.Count;
         int posx = (- diceNumbers/2*50);
         if(diceNumbers%2 == 0) {
@@ -68,12 +87,9 @@ public class DiceRack : MonoBehaviour
     public void ShowDicesUI(){
         for(int index = 0; index < diceUIList.Count; index++ ) {
             DiceUI ui = diceUIList[index].GetComponent<DiceUI>();
-            if(ui)
-            {
+            if(ui) {
                 ui.text = diceRack[index].ToString(); //TO DO verify diceRack[index] exists
-            }
-          
-            
+            } 
         }
     }
 
@@ -84,6 +100,7 @@ public class DiceRack : MonoBehaviour
     public void Reset(){
         PlayerStats.Instance.ResetStats();
     }
+    
 
     public void Randomize(){
         currentFaces = new List<DiceFace>();

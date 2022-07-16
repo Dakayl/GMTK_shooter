@@ -8,7 +8,7 @@ public class InteractionPiercingEffect:IDiceEffect {
         return "Piercing";
     }
     public string getHtmlText() {
-        return "Your bullets <b>pierce</b> walls and ennemies !";
+        return "Your bullets <b>pierce</b> once walls and ennemies !";
     }
     public override string ToString()
     {
