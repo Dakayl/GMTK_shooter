@@ -42,7 +42,8 @@ public class PlayerStats : MonoBehaviour
     public float baseAttackSpeed = 2;           // Entity's base attack per second
      [Tooltip("Entity's base attack range")]
     public float baseAttackRange = 25;           // Entity's base range
-
+     [Tooltip("Entity's base bullets size")]
+    public float baseBulletSize = 1;           // Entity's base range
 
     [HideInInspector]
     public float attackDamage;                  // Entity's current attack damage
@@ -50,6 +51,8 @@ public class PlayerStats : MonoBehaviour
     public float attackSpeed;                   // Entity's current number of attack per second
     [HideInInspector]
     public float attackRange;                   // Entity's current attack range
+     [HideInInspector]
+    public float bulletSize;                   // Entity's current number of attack per second
 
     private bool isPiercingMode = false;        // Is Player shooting piercing bullets ?
     public void ActivatePiercing() { isPiercingMode = true; }
@@ -59,13 +62,30 @@ public class PlayerStats : MonoBehaviour
     public void ActivateBouncing() { isBouncingMode = true; }
     public bool isBouncingActivated { get { return isBouncingMode; }}
 
+    private bool isExplodingMode = false;         // Is Player shooting bouncing bullets ?
+    public void ActivateExploding() { isExplodingMode = true; }
+    public bool isExplodingActivated { get { return isExplodingMode; }}
+    
+    private bool isDraculaMode = false;             // Is Player shooting leeching bullets
+    public void ActivateDracula() { isDraculaMode = true; }
+    public bool isDraculaActivated { get { return isDraculaMode; }}
+
+    private bool isTwoBulletsMode = false;             // Is Player shooting fire bullets ?
+    public void ActivateTwoBullets() { isTwoBulletsMode = true; }
+    public bool isTwoBulletsActivated { get { return isTwoBulletsMode; }}
+
     private bool isFireMode = false;             // Is Player shooting fire bullets ?
     public void ActivateFire() { isFireMode = true; }
     public bool isFireActivated { get { return isFireMode; }}
     
     private bool isPoisonMode = false;         // Is Player shooting poison bullets ?
     public void ActivatePoison() { isPoisonMode = true; }
-    public bool isPoisonActivated { get { return isPiercingMode; }}
+    public bool isPoisonActivated { get { return isPoisonMode; }}
+
+    private bool isElectricityMode = false;         // Is Player shooting electric bullets ?
+    public void ActivateElectricity() { isElectricityMode = true; }
+    public bool isElectricityActivated { get { return isElectricityMode; }}
+
 
     [Header("Mobility stats")]
     [Tooltip("Entity's base run speed")]
@@ -120,11 +140,17 @@ public class PlayerStats : MonoBehaviour
         invinvicilityFramesDuration = baseInvinvicilityFramesDuration;
         attackDamage = baseAttackDamage;
         attackSpeed = baseAttackSpeed;
+        attackRange = baseAttackRange;
+        bulletSize = baseBulletSize;
         runSpeed = baseRunSpeed;
         isPiercingMode = false;
         isBouncingMode = false;
+        isExplodingMode = false;
+        isDraculaMode = false;
+        isTwoBulletsMode = false;
         isFireMode = false;
         isPoisonMode = false;
+        isElectricityMode = false;
     }
 
     /// <summary>

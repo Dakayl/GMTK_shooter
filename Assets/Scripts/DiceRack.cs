@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,16 +9,15 @@ public class DiceRack : MonoBehaviour
     [SerializeField] private GameObject diceUIPrefab;
     private List<Dice> diceRack;
     private List<DiceFace> currentFaces;
-
-    public void Start()
+    private List<GameObject> diceUIList;
+    public void Awake()
     {
+         
           diceRack = new List<Dice>();
-          Reset();
-          
           Dice one = new Dice();
           one.CreateInteractionDice();
           AddDice(one);
-
+          
           Dice two = new Dice();
           two.CreateShootDice();
           AddDice(two);
@@ -25,19 +25,55 @@ public class DiceRack : MonoBehaviour
           Dice three = new Dice();
           three.CreateStatusDice();
           AddDice(three);
-         
+
+          Dice four = new Dice();
+          four.CreateStatusDice();
+          AddDice(four);
+
+
+          diceUIList = new List<GameObject>();
+          CreateDicesUI();
+
+    }
+    public void Start()
+    {
+        
+          Reset();   
+
           Randomize();
-          ShowDices();
+
+          ShowDicesUI();
+          
     }
 
-    public void ShowDices(){
-        for(int index = 0; index < diceRack.Count; index++ ) {
+    public void CreateDicesUI(){
+        int diceNumbers = diceRack.Count;
+        int posx = (- diceNumbers/2*50);
+        if(diceNumbers%2 == 0) {
+            posx += 25;
+        }
+        for(int index = 0; index < diceNumbers; index++ ) {
             GameObject diceUI = Instantiate(diceUIPrefab);
-            diceUI.transform.parent = this.gameObject.transform;
+            diceUI.transform.SetParent(this.gameObject.transform, false);
             RectTransform transform = diceUI.GetComponent<RectTransform>();
+          
             if(transform) {
-                transform.position = new Vector3(-400 + index * 100, -25, 0);
+                transform.anchoredPosition = new Vector3(posx, y: 25, 0);
+                posx += 50;
             }
+            diceUIList.Add(diceUI);
+        }
+    }
+
+    public void ShowDicesUI(){
+        for(int index = 0; index < diceUIList.Count; index++ ) {
+            DiceUI ui = diceUIList[index].GetComponent<DiceUI>();
+            if(ui)
+            {
+                ui.text = diceRack[index].ToString(); //TO DO verify diceRack[index] exists
+            }
+          
+            
         }
     }
 
@@ -46,7 +82,6 @@ public class DiceRack : MonoBehaviour
     }
 
     public void Reset(){
-        Debug.Log(PlayerStats.Instance);
         PlayerStats.Instance.ResetStats();
     }
 
@@ -56,7 +91,6 @@ public class DiceRack : MonoBehaviour
             DiceFace face = diceRack[index].SelectRandomFace();
             currentFaces.Add(face);
         }
-        DebugMe();
     }
 
     public void DebugMe(){

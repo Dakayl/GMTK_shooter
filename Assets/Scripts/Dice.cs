@@ -25,30 +25,40 @@ public class Dice
         faceList = new List<DiceFace>();
         AddFace (new DiceFace(new InteractionBouncingEffect()));
         AddFace (new DiceFace(new InteractionBouncingEffect()));
-        AddFace (new DiceFace(new InteractionBouncingEffect()));
-        AddFace (new DiceFace(new InteractionPiercingEffect()));
+        AddFace (new DiceFace(new InteractionExplosionEffect()));
+        AddFace (new DiceFace(new InteractionExplosionEffect()));
         AddFace (new DiceFace(new InteractionPiercingEffect()));
         AddFace (new DiceFace(new InteractionPiercingEffect()));
     }
 
     public void CreateShootDice() {
         faceList = new List<DiceFace>();
-        AddFace (new DiceFace(new ShootDamageEffect()));
-        AddFace (new DiceFace(new ShootDamageEffect()));
+        AddFace (new DiceFace(new ShootSizeEffect()));
+        AddFace (new DiceFace(new ShootSizeEffect()));
         AddFace (new DiceFace(new ShootRangeEffect()));
         AddFace (new DiceFace(new ShootRangeEffect()));
         AddFace (new DiceFace(new ShootSpeedEffect()));
         AddFace (new DiceFace(new ShootSpeedEffect()));
     }
 
-     public void CreateStatusDice() {
+    public void CreateStatusDice() {
         faceList = new List<DiceFace>();
         AddFace (new DiceFace(new StatusFireEffect()));
         AddFace (new DiceFace(new StatusFireEffect()));
-        AddFace (new DiceFace(new StatusFireEffect()));
+        AddFace (new DiceFace(new StatusElectricityEffect()));
+        AddFace (new DiceFace(new StatusElectricityEffect()));
         AddFace (new DiceFace(new StatusPoisonffect()));
         AddFace (new DiceFace(new StatusPoisonffect()));
-        AddFace (new DiceFace(new StatusPoisonffect()));
+    }
+
+    public void CreateFightDice() {
+        faceList = new List<DiceFace>();
+        AddFace (new DiceFace(new FightArmorMode()));
+        AddFace (new DiceFace(new FightArmorMode()));
+        AddFace (new DiceFace(new FightDraculaMode()));
+        AddFace (new DiceFace(new FightDraculaMode()));
+        AddFace (new DiceFace(new FightTwoBulletsMode()));
+        AddFace (new DiceFace(new FightTwoBulletsMode()));
     }
 
     public DiceFace SelectRandomFace() {
@@ -61,6 +71,6 @@ public class Dice
 
     public override string ToString()
     {
-        return "Dice : "+currentFace.effect;
+        return ""+currentFace.effect;
     }
 }

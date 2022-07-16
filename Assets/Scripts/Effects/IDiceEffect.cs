@@ -1,7 +1,7 @@
 public interface IDiceEffect
 {
-    void ActivateEffect()
-    {
-        
-    }
+
+    public void ActivateEffect();
+    public string getTitle();
+    public string getHtmlText();
 }

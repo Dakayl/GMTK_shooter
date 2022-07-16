@@ -4,9 +4,14 @@ public class InteractionBouncingEffect:IDiceEffect {
     {
         PlayerStats.Instance.ActivateBouncing();
     }
-
+    public string getTitle() {
+        return "Bouncing";
+    }
+    public string getHtmlText() {
+        return "Your bullets <b>bounce</b> on wall and ennemies !";
+    }
     public override string ToString()
     {
-        return "<Bouncing Effect>";
+        return "Bouncing Effect";
     }
 }

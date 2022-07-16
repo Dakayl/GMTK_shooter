@@ -4,9 +4,14 @@ public class StatusPoisonffect:IDiceEffect {
     {
         PlayerStats.Instance.ActivatePoison();
     }
-
+    public string getTitle() {
+        return "Poison bullets";
+    }
+    public string getHtmlText() {
+        return "Shoot poisoned bullets, <b>kill ennemies</b> with a stacking dot !";
+    }
     public override string ToString()
     {
-        return "<Poison Effect>";
+        return "Poison Effect";
     }
 }
