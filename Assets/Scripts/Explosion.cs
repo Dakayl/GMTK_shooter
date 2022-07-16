@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public static float explosionDamage = 10.0f;
-    public static float explosionDuration = 1.0f;
+    public static float explosionDamage = 5.0f;
+    public static float explosionDuration = 0.7f;
 
     public void Awake(){
         Invoke(methodName: "Remove", explosionDuration);

@@ -29,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
     private float playerAttackRange;
     private Vector2 myMovement;
     private bool canMove = true;
+    public bool isStunned = false;
     private Coroutine canMoveCooldown;
     private bool isFacingRight = true;
 
@@ -132,7 +133,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Patroling()
     {
-        if (canMove)
+        if (canMove && !isStunned)
         {
             if(myMovement == Vector2.zero)  // Only count when not moving
             {
@@ -160,7 +161,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Rushing()
     {
-        if (canMove)
+        if (canMove && !isStunned)
         {
             myMovement = GetPlayerDirection();
 

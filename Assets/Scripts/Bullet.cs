@@ -18,7 +18,6 @@ public class Bullet : MonoBehaviour
     private bool isElectricBullet;
     private float damage;
     private float lifeDuration = 2.9f;
-    private float bounceForce = 1.0f;
 
      Color tintColor;
 

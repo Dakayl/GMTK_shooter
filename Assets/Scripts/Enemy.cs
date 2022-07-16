@@ -11,12 +11,11 @@ public class Enemy : MonoBehaviour
     private bool isOnFire = false;
     private bool isOnPoison = false;
     private int poisonStack = 0;
-    private bool isOnElectric = false;
     private float currentFireDuration = 0;
     private float currentElectricDuration = 0;
     public static float baselifePoints = 100;
     private float currentLifePoints = 100;
-    private float attackDamage = 25;
+    private float attackDamage = 20;
     private EnemyMovement myMovement;
 
     public void Awake() {
@@ -42,7 +41,6 @@ public class Enemy : MonoBehaviour
          if(isElectric) {
             Stun();
             Invoke("EletricTick", StatusElectricityEffect.duration);
-            isOnElectric = true; //TO DO real effect
             currentElectricDuration = StatusElectricityEffect.duration;
         }
 
@@ -50,11 +48,11 @@ public class Enemy : MonoBehaviour
     }
 
     public void Stun(){
-         // EletricParticles ?
+        myMovement.isStunned = true;
     }
 
     public void Unstun(){
-         // EletricParticles ?
+         myMovement.isStunned = false;
     }
 
 
@@ -87,7 +85,6 @@ public class Enemy : MonoBehaviour
     public void EletricTick() {
         currentElectricDuration -= StatusElectricityEffect.duration;
         if(currentElectricDuration <= 0) {
-            isOnElectric = false;
             Unstun();
         }       
     }

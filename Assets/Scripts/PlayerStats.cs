@@ -41,7 +41,7 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Entity's base attack speed")]
     public float baseAttackSpeed = 2;           // Entity's base attack per second
      [Tooltip("Entity's base attack range")]
-    public float baseAttackRange = 25;           // Entity's base range
+    public float baseAttackRange = 20;           // Entity's base range
      [Tooltip("Entity's base bullets size")]
     public float baseBulletSize = 1;           // Entity's base range
 
@@ -129,7 +129,7 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     public void HealToFull()
     {
-        currentHP = maxHP/2;
+        currentHP = maxHP;
     }
 
     /// <summary>
@@ -177,6 +177,11 @@ public class PlayerStats : MonoBehaviour
     {
         if (!areInvicibilityFramesActive)
         {
+            if(armor > 0) {
+                armor --;
+                ActivateInvincinbilityFrames();
+                return;
+            }
             currentHP -= amount;
             ActivateInvincinbilityFrames();
             Debug.Log("HP LEFT : " + currentHP);

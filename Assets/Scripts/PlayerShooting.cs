@@ -19,6 +19,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
+            if(Time.timeScale == 0) return;
             if(isCoolingDown == false)
             {
                 if(PlayerStats.Instance.isTwoBulletsActivated) {

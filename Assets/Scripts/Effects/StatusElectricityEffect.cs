@@ -1,6 +1,6 @@
 public class StatusElectricityEffect:IDiceEffect {
     
-    public static float duration  = 0.5f;
+    public static float duration  = 1f;
     public void ActivateEffect()
     {
         PlayerStats.Instance.ActivateElectricity();

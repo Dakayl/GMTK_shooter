@@ -45,8 +45,6 @@ public class EffectWindowUI : MonoBehaviour
     }
 
     public void Awake() {
-        
-        Hide();
     }
 
     public void Show(){
