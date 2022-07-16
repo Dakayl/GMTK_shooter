@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-     public static GameManager Instance { get; private set; } // Singleton
+    public static GameManager Instance { get; private set; } // Singleton
+
+    public int currentLevel;
+    public int ennemyKilled;
     
     private void Awake()
     {
@@ -15,6 +18,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        currentLevel = 1;
+        ennemyKilled = 0;
     }
     private void Start()
     {

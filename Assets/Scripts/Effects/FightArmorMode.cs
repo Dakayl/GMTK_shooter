@@ -1,6 +1,7 @@
 public class FightArmorMode:IDiceEffect {
     
-    public static int bonusArmor = 25;
+    public static int bonusArmor = 100;
+    public static int reducePerHit = 100;
 
     public void ActivateEffect()
     {
