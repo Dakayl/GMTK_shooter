@@ -71,8 +71,8 @@ public class PlayerStats : MonoBehaviour
     public bool isDraculaActivated { get { return isDraculaMode; }}
 
     private bool isTwoBulletsMode = false;             // Is Player shooting fire bullets ?
-    public void ActivateTwoBullets() { isTwoBulletsMode = true; Debug.Log(isTwoBulletsMode);}
-    public bool isTwoBulletsActivated { get { Debug.Log(isTwoBulletsMode); return isTwoBulletsMode; }}
+    public void ActivateTwoBullets() { isTwoBulletsMode = true; }
+    public bool isTwoBulletsActivated { get { return isTwoBulletsMode; }}
 
     private bool isFireMode = false;             // Is Player shooting fire bullets ?
     public void ActivateFire() { isFireMode = true; }

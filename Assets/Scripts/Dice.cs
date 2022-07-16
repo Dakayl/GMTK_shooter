@@ -47,8 +47,8 @@ public class Dice
         AddFace (new DiceFace(new StatusFireEffect()));
         AddFace (new DiceFace(new StatusElectricityEffect()));
         AddFace (new DiceFace(new StatusElectricityEffect()));
-        AddFace (new DiceFace(new StatusPoisonffect()));
-        AddFace (new DiceFace(new StatusPoisonffect()));
+        AddFace (new DiceFace(new StatusPoisonEffect()));
+        AddFace (new DiceFace(new StatusPoisonEffect()));
     }
 
     public void CreateFightDice() {

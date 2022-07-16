@@ -20,18 +20,29 @@ public class Enemy : MonoBehaviour
 
     public void Awake() {
         currentLifePoints = baselifePoints;
+        isShot(1,true, false, true);
+        
+
     }
 
     public void isShot(float damage, bool isFire, bool isPoison, bool isElectric) {
         if(isFire) {
+            if(!isOnFire) {
+                InvokeRepeating("FireTick", StatusFireEffect.dotTickDuration, StatusFireEffect.dotTickDuration);
+            }
             isOnFire = true; //TO DO real effect
             currentFireDuration = StatusFireEffect.fullDuration;
         }
         if(isPoison) {
+            if(!isOnPoison) {
+                InvokeRepeating("PoisonTick", StatusPoisonEffect.dotTickDuration, StatusPoisonEffect.dotTickDuration);
+            }
             isOnPoison = true; //TO DO real effect
-            poisonStack += StatusPoisonffect.stackNumber;
+            poisonStack += StatusPoisonEffect.stackNumber;
         }
          if(isElectric) {
+            Stun();
+            Invoke("EletricTick", StatusElectricityEffect.duration);
             isOnElectric = true; //TO DO real effect
             currentElectricDuration = StatusElectricityEffect.duration;
         }
@@ -39,14 +50,46 @@ public class Enemy : MonoBehaviour
         TakeDamage(damage);
     }
 
+    public void Stun(){
+         // EletricParticles ?
+    }
 
-    public void TakeDamage(float ammount)
+    public void Unstun(){
+         // EletricParticles ?
+    }
+
+
+    public void TakeDamage(float amount)
     {
-        currentLifePoints -= ammount;
+        currentLifePoints -= amount;
         if(currentLifePoints <= 0)
         {
             Kill();
         }
+    }
+
+    public void PoisonTick() {
+        TakeDamage(poisonStack * StatusPoisonEffect.damagePerStack);
+      
+        // poisonParticles ?
+    }
+
+    public void FireTick() {
+        TakeDamage( StatusFireEffect.fireDamage);
+        currentFireDuration -= StatusFireEffect.dotTickDuration;
+        if(currentFireDuration <= 0) {
+            isOnFire = false;
+        }
+        // FireParticles ?
+    }
+
+    public void EletricTick() {
+        currentElectricDuration -= StatusElectricityEffect.duration;
+        if(currentElectricDuration <= 0) {
+            isOnElectric = false;
+            Unstun();
+            isShot(1,true, false, false);
+        }       
     }
 
     public void Kill()
@@ -62,7 +105,6 @@ public class Enemy : MonoBehaviour
         float ratio = currentLifePoints / baselifePoints;
         RectTransform rectTransform = greenbar.GetComponent<RectTransform>();
         if(rectTransform) {
-            Debug.Log(rectTransform.sizeDelta);
             rectTransform.sizeDelta = new Vector2 (ratio, 0.14f);
         }
     }

@@ -19,7 +19,6 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            Debug.Log(PlayerStats.Instance.isTwoBulletsActivated);
             if(PlayerStats.Instance.isTwoBulletsActivated) {
                 Shoot(-deviationAngle);
                 Shoot(+deviationAngle);

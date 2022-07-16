@@ -1,6 +1,7 @@
-public class StatusPoisonffect:IDiceEffect {
+public class StatusPoisonEffect:IDiceEffect {
     
     public static int stackNumber = 1;
+    public static int damagePerStack = 1;
     public static float dotTickDuration  = 2;
     public void ActivateEffect()
     {
