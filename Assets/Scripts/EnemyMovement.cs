@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
     private float playerAttackRange;
     private Vector2 myMovement;
     private bool canMove = true;
-    public bool isStunned = false;
+    [HideInInspector] public bool isStunned = false;
     private Coroutine canMoveCooldown;
     private bool isFacingRight = true;
 

@@ -13,9 +13,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform spriteRenderer;
 
+    private Animator animator;
+
     private Vector2 playerMovement;
     private Vector2 mousePosition;
     private bool facingRight = true;
+
+    void Awake(){
+       animator = spriteRenderer.GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -32,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
         playerMovement.y = Input.GetAxisRaw("Vertical");
 
         mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        if(playerMovement.x  != 0 || playerMovement.y != 0){
+            animator.SetBool("isMoving", true);
+        } else {
+            animator.SetBool("isMoving", false);
+        }
     }
 
     private void FixedUpdate()
