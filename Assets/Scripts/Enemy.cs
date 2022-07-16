@@ -13,14 +13,21 @@ public class Enemy : MonoBehaviour
     private int poisonStack = 0;
     private float currentFireDuration = 0;
     private float currentElectricDuration = 0;
-    public static float baselifePoints = 100;
+    public static float baselifePoints = 95;
+    public static float lifePointsPerLevel = 5;
     private float currentLifePoints = 100;
-    private float attackDamage = 20;
+    private float baseAttackDamage = 18;
+    public static float attackPerLevel = 2;
+     private float currentAttackDamage = 20;
     private EnemyMovement myMovement;
 
     public void Awake() {
-        currentLifePoints = baselifePoints;
         myMovement = GetComponent<EnemyMovement>();
+    }
+
+    public void Start() {
+        currentLifePoints = baselifePoints + GameManager.Instance.currentLevel * lifePointsPerLevel;
+        currentAttackDamage = baseAttackDamage + GameManager.Instance.currentLevel * attackPerLevel;
     }
 
     public void isShot(float damage, bool isFire = false, bool isPoison = false, bool isElectric = false) {
@@ -94,6 +101,7 @@ public class Enemy : MonoBehaviour
         GameObject myParticles = GameObject.Instantiate(deathParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
         Destroy(gameObject);
+        GameManager.Instance.ennemyKilled ++;
     }
     public void Update()
     {
@@ -108,7 +116,7 @@ public class Enemy : MonoBehaviour
 
     public void DamagePlayer()
     {
-        PlayerStats.Instance.TakeDamage(attackDamage);
+        PlayerStats.Instance.TakeDamage(currentAttackDamage);
     }
 
 }
