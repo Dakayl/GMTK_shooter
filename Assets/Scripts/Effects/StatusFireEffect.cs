@@ -8,7 +8,7 @@ public class StatusFireEffect:IDiceEffect {
         PlayerStats.Instance.ActivateFire(); 
     }
     public string getTitle() {
-        return "Fire bullets";
+        return "Damage Type";
     }
     public string getHtmlText() {
         return string.Format("Deal <b>{0}</b> fire damage each {1} sec, during {2} sec. Duration is stackable", stackNumber, dotTickDuration, fullDuration);

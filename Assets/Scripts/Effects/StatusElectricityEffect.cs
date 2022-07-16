@@ -6,7 +6,7 @@ public class StatusElectricityEffect:IDiceEffect {
         PlayerStats.Instance.ActivateElectricity();
     }
     public string getTitle() {
-        return "Electric bullets";
+        return "Damage Type";
     }
     public string getHtmlText() {
         return string.Format("Stun the target for <b>{0}</b> sec per hit. Duration is stackable", duration);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LifeUI : MonoBehaviour
+public class ArmorUI : MonoBehaviour
 {
     RectTransform rectTransform;
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class LifeUI : MonoBehaviour
     void Update()
     {
         //TO DO replace with proper event mgt
-        float ratio = PlayerStats.Instance.currentHP /  PlayerStats.Instance.maxHP;
+        float ratio = PlayerStats.Instance.armor / FightArmorMode.bonusArmor;
         rectTransform.sizeDelta = new Vector2 (ratio*100, 16);
     }
 }

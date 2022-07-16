@@ -5,7 +5,7 @@ public class InteractionBouncingEffect:IDiceEffect {
         PlayerStats.Instance.ActivateBouncing();
     }
     public string getTitle() {
-        return "Bouncing";
+        return "Impact reaction";
     }
     public string getHtmlText() {
         return "Your bullets <b>bounce</b> once on walls and ennemies !";

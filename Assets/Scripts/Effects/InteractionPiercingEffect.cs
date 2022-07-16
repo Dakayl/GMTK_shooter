@@ -5,7 +5,7 @@ public class InteractionPiercingEffect:IDiceEffect {
         PlayerStats.Instance.ActivatePiercing();
     }
     public string getTitle() {
-        return "Piercing";
+        return "Impact reaction";
     }
     public string getHtmlText() {
         return "Your bullets <b>pierce</b> once walls and ennemies !";

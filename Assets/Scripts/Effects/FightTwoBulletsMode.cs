@@ -5,10 +5,10 @@ public class FightTwoBulletsMode:IDiceEffect {
         PlayerStats.Instance.ActivateTwoBullets();
     }
     public string getTitle() {
-        return "Two Bullets";
+        return "Fight Mode";
     }
     public string getHtmlText() {
-        return "Shoot twice, <b>kill more</b> !";
+        return "Two Bullets Mode: Shoot twice, <b>kill more</b> !";
     }
     public override string ToString()
     {

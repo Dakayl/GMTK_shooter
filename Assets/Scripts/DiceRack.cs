@@ -48,10 +48,12 @@ public class DiceRack : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Tab)) {
             effectWindowUI.Show();
+            GameManager.Instance.Pause();
         }
 
         if(Input.GetKeyUp(KeyCode.Tab)) {
              effectWindowUI.Hide();
+             GameManager.Instance.Resume();
         }
     }
 
