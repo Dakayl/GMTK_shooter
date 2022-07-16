@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class EffectWindowUI : MonoBehaviour
 {
     [SerializeField] private GameObject dicePanelPrefab;
+    [SerializeField] private TextMeshProUGUI level;
+    [SerializeField] private TextMeshProUGUI killed;
     private List<GameObject> dicePanelList;
 
     private void cleanPanelList(){
@@ -45,11 +47,11 @@ public class EffectWindowUI : MonoBehaviour
     }
 
     public void Awake() {
-        
-        Hide();
     }
 
     public void Show(){
+        killed.text = GameManager.Instance.ennemyKilled.ToString();
+        level.text = GameManager.Instance.currentLevel.ToString();
         this.gameObject.SetActive(true);
     }
 

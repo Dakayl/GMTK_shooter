@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject deathParticlesPrefab;
+    [SerializeField] private GameObject deathParticlesPrefab;
+    [SerializeField] private GameObject fireParticlesPrefab;
+    [SerializeField] private GameObject thunderParticlesPrefab;
+    [SerializeField] private GameObject poisonParticlesPrefab;
 
     [SerializeField] private GameObject greenbar;
     private bool isOnFire = false;
     private bool isOnPoison = false;
     private int poisonStack = 0;
-    private bool isOnElectric = false;
     private float currentFireDuration = 0;
     private float currentElectricDuration = 0;
-    public static float baselifePoints = 100;
+    public static float baselifePoints = 95;
+    public static float lifePointsPerLevel = 5;
     private float currentLifePoints = 100;
-    private float attackDamage = 25;
+    private float baseAttackDamage = 18;
+    public static float attackPerLevel = 2;
+     private float currentAttackDamage = 20;
     private EnemyMovement myMovement;
 
     public void Awake() {
-        currentLifePoints = baselifePoints;
         myMovement = GetComponent<EnemyMovement>();
+    }
+
+    public void Start() {
+        currentLifePoints = baselifePoints + GameManager.Instance.currentLevel * lifePointsPerLevel;
+        currentAttackDamage = baseAttackDamage + GameManager.Instance.currentLevel * attackPerLevel;
     }
 
     public void isShot(float damage, bool isFire = false, bool isPoison = false, bool isElectric = false) {
@@ -42,7 +50,6 @@ public class Enemy : MonoBehaviour
          if(isElectric) {
             Stun();
             Invoke("EletricTick", StatusElectricityEffect.duration);
-            isOnElectric = true; //TO DO real effect
             currentElectricDuration = StatusElectricityEffect.duration;
         }
 
@@ -50,11 +57,15 @@ public class Enemy : MonoBehaviour
     }
 
     public void Stun(){
-         // EletricParticles ?
+        myMovement.isStunned = true;
+        GameObject myParticles = GameObject.Instantiate(thunderParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
     public void Unstun(){
-         // EletricParticles ?
+        myMovement.isStunned = false;
+        GameObject myParticles = GameObject.Instantiate(thunderParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
 
@@ -70,8 +81,8 @@ public class Enemy : MonoBehaviour
 
     public void PoisonTick() {
         TakeDamage(poisonStack * StatusPoisonEffect.damagePerStack);
-      
-        // poisonParticles ?
+        GameObject myParticles = GameObject.Instantiate(poisonParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
     public void FireTick() {
@@ -81,13 +92,13 @@ public class Enemy : MonoBehaviour
             isOnFire = false;
             CancelInvoke("FireTick");
         }
-        // FireParticles ?
+        GameObject myParticles = GameObject.Instantiate(fireParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
     public void EletricTick() {
         currentElectricDuration -= StatusElectricityEffect.duration;
         if(currentElectricDuration <= 0) {
-            isOnElectric = false;
             Unstun();
         }       
     }
@@ -97,6 +108,7 @@ public class Enemy : MonoBehaviour
         GameObject myParticles = GameObject.Instantiate(deathParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
         Destroy(gameObject);
+        GameManager.Instance.ennemyKilled ++;
     }
     public void Update()
     {
@@ -111,7 +123,7 @@ public class Enemy : MonoBehaviour
 
     public void DamagePlayer()
     {
-        PlayerStats.Instance.TakeDamage(attackDamage);
+        PlayerStats.Instance.TakeDamage(currentAttackDamage);
     }
 
 }
