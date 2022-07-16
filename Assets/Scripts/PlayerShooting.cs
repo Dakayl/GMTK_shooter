@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Transform bulletSpawnPoint;
+    [SerializeField]
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private float bulletForce = 20f;
+
+    private void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Shoot()
     {
-        
+        GameObject bullet = Instantiate(projectilePrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+        bulletRB.AddForce(bulletSpawnPoint.right * bulletForce, ForceMode2D.Impulse);
     }
 }
