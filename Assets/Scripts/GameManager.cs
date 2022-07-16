@@ -6,8 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; } // Singleton
 
-    public int currentLevel;
-    public int ennemyKilled;
+    [SerializeField]
+    private GameObject[] dontDestroyOnLoad;
+
+    private int currentLevel;
+    private int ennemyKilled;
     
     private void Awake()
     {
