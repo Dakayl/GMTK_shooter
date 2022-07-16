@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private float currentElectricDuration = 0;
     public static float baselifePoints = 100;
     private float currentLifePoints = 100;
+    private float baseLifePoints = 100;
 
     public void Awake() {
         currentLifePoints = baselifePoints;
@@ -41,8 +42,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float ammount)
     {
-        lifePoints -= ammount;
-        if(lifePoints <= 0)
+        currentLifePoints -= ammount;
+        if(currentLifePoints <= 0)
         {
             Kill();
         }
