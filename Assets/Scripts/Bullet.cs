@@ -25,6 +25,14 @@ public class Bullet : MonoBehaviour
         damage = PlayerStats.Instance.attackDamage;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            OnEnemyCollision(collision.gameObject.GetComponent<Enemy>());
+        }
+    }
+
     public void OnEnemyCollision(Enemy enemy){
         enemy.isShot(damage,isFireBullet, isPoisonBullet, isElectricBullet);
         if(isDraculaBullet){

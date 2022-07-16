@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject deathParticlesPrefab;
 
     private bool isOnFire = false;
     private bool isOnPoison = false;
@@ -26,7 +28,25 @@ public class Enemy : MonoBehaviour
             isOnElectric = true; //TO DO real effect
             currentElectricDuration = StatusElectricityEffect.duration;
         }
-        lifePoints -= damage;
+
+        TakeDamage(damage);
     }
 
+
+    public void TakeDamage(float ammount)
+    {
+        lifePoints -= ammount;
+        if(lifePoints <= 0)
+        {
+            Kill();
+        }
+    }
+
+    public void Kill()
+    {
+        GameObject myParticles = GameObject.Instantiate(deathParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
+
+        Destroy(gameObject);
+    }
 }
