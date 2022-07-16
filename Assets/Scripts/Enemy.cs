@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         currentLifePoints = baselifePoints;       
     }
 
-    public void isShot(float damage, bool isFire, bool isPoison, bool isElectric) {
+    public void isShot(float damage, bool isFire = false, bool isPoison = false, bool isElectric = false) {
         if(isFire) {
             if(!isOnFire) {
                 InvokeRepeating("FireTick", StatusFireEffect.dotTickDuration, StatusFireEffect.dotTickDuration);
@@ -93,7 +93,6 @@ public class Enemy : MonoBehaviour
     {
         GameObject myParticles = GameObject.Instantiate(deathParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
-
         Destroy(gameObject);
     }
     public void Update()
