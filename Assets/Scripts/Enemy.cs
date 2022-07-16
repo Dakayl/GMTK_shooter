@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject deathParticlesPrefab;
+    [SerializeField] private GameObject deathParticlesPrefab;
+    [SerializeField] private GameObject fireParticlesPrefab;
+    [SerializeField] private GameObject thunderParticlesPrefab;
+    [SerializeField] private GameObject poisonParticlesPrefab;
 
     [SerializeField] private GameObject greenbar;
     private bool isOnFire = false;
@@ -56,10 +58,14 @@ public class Enemy : MonoBehaviour
 
     public void Stun(){
         myMovement.isStunned = true;
+        GameObject myParticles = GameObject.Instantiate(thunderParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
     public void Unstun(){
-         myMovement.isStunned = false;
+        myMovement.isStunned = false;
+        GameObject myParticles = GameObject.Instantiate(thunderParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
 
@@ -75,8 +81,8 @@ public class Enemy : MonoBehaviour
 
     public void PoisonTick() {
         TakeDamage(poisonStack * StatusPoisonEffect.damagePerStack);
-      
-        // poisonParticles ?
+        GameObject myParticles = GameObject.Instantiate(poisonParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
     public void FireTick() {
@@ -86,7 +92,8 @@ public class Enemy : MonoBehaviour
             isOnFire = false;
             CancelInvoke("FireTick");
         }
-        // FireParticles ?
+        GameObject myParticles = GameObject.Instantiate(fireParticlesPrefab, transform.position, new Quaternion());
+        myParticles.GetComponent<ParticleSystem>().Emit(20);
     }
 
     public void EletricTick() {
