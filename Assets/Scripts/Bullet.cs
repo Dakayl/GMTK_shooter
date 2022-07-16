@@ -15,6 +15,8 @@ public class Bullet : MonoBehaviour
     private bool isPoisonBullet;
     private bool isElectricBullet;
     private float damage;
+    private float lifeDuration = 2.9f;
+    private float bounceForce = 1.0f;
 
      Color tintColor;
 
@@ -42,17 +44,25 @@ public class Bullet : MonoBehaviour
     }
     public void Update(){
         //checkRange
+        lifeDuration -= Time.deltaTime;
+        if(lifeDuration <= 0) {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            OnEnemyCollision(collision.gameObject.GetComponent<Enemy>());
+            Debug.Log(collision.gameObject.tag);
+            OnEnemyCollision(collision.gameObject.GetComponent<Enemy>(), collision.contacts[0].normal);
+        } else if(collision.gameObject.tag == "MapWall"){
+            Debug.Log(collision.gameObject.tag);
+            OnWallCollision(collision.contacts[0].normal);
         }
     }
 
-    public void OnEnemyCollision(Enemy enemy){
+    public void OnEnemyCollision(Enemy enemy, Vector2 bounceNormal){
         enemy.isShot(damage,isFireBullet, isPoisonBullet, isElectricBullet);
         if(isDraculaBullet){
             float healBack = FightDraculaMode.percentageOfLife * damage;
@@ -64,30 +74,32 @@ public class Bullet : MonoBehaviour
             }
         }
         
-        if(isBouncingBullet) {
-            //...
-        }
-        if(isExplodingBullet) {
-            //...
-        }
-        if(!isPiercingBullet) {
-            Destroy(gameObject);
-            //...
-        }
-        isPiercingBullet = false;
+       ManageCollision(bounceNormal);
     }
 
-     public void OnWallCollision(){
-        if(isBouncingBullet) {
-            //...
+    public void OnWallCollision(Vector2 bounceNormal){
+        ManageCollision(bounceNormal);
+    }
+
+    public void ManageCollision(Vector2 bounceNormal) {
+         if(isBouncingBullet) {
+            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.AddForce(bounceNormal*bounceForce);
+            lifeDuration += InteractionBouncingEffect.addedLifeDuration;
+            isBouncingBullet = false;
+            return;
         }
         if(isExplodingBullet) {
             //...
+            Destroy(gameObject);
+            return;
         }
         if(!isPiercingBullet) {
             Destroy(gameObject);
+            return;
             //...
         }
+        lifeDuration += InteractionPiercingEffect.addedLifeDuration;
         isPiercingBullet = false;
     }
 }

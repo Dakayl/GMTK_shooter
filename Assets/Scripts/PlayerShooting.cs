@@ -19,16 +19,19 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            if(PlayerStats.Instance.isTwoBulletsActivated) {
-                Shoot(-deviationAngle);
-                Shoot(+deviationAngle);
-            } else {
-                Shoot();
+            if(isCoolingDown == false)
+            {
+                if(PlayerStats.Instance.isTwoBulletsActivated) {
+                    Shoot(-deviationAngle);
+                    Shoot(+deviationAngle);
+                } else {
+                    Shoot();  
+                }
+                isCoolingDown = true;
             }
-        }
-
-        // Attack cooldown
-        if (isCoolingDown)
+            
+            
+        } else if (isCoolingDown)  // Attack cooldown
         {
             coolDownTimer += Time.deltaTime;
             if(coolDownTimer >= 1/ PlayerStats.Instance.attackSpeed)
@@ -42,13 +45,12 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot(float angle = 0)
     {
-        if(isCoolingDown == false)
-        {
-            GameObject bullet = Instantiate(projectilePrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-            bulletRB.AddForce(bulletSpawnPoint.right * bulletForce, ForceMode2D.Impulse);
-
-            isCoolingDown = true;
+        GameObject bullet = Instantiate(projectilePrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
+        bulletRB.AddForce(bulletSpawnPoint.right * bulletForce, ForceMode2D.Impulse);
+        Vector2 scale = bullet.transform.localScale;
+        if(PlayerStats.Instance.bulletSize > PlayerStats.Instance.baseBulletSize) {
+            bullet.transform.localScale *= PlayerStats.Instance.bulletSize;;
         }
     }
 }

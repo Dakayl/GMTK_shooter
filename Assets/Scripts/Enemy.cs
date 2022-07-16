@@ -19,10 +19,7 @@ public class Enemy : MonoBehaviour
     private float baseLifePoints = 100;
 
     public void Awake() {
-        currentLifePoints = baselifePoints;
-        isShot(1,true, false, true);
-        
-
+        currentLifePoints = baselifePoints;       
     }
 
     public void isShot(float damage, bool isFire, bool isPoison, bool isElectric) {
@@ -79,6 +76,7 @@ public class Enemy : MonoBehaviour
         currentFireDuration -= StatusFireEffect.dotTickDuration;
         if(currentFireDuration <= 0) {
             isOnFire = false;
+            CancelInvoke("FireTick");
         }
         // FireParticles ?
     }
@@ -88,7 +86,6 @@ public class Enemy : MonoBehaviour
         if(currentElectricDuration <= 0) {
             isOnElectric = false;
             Unstun();
-            isShot(1,true, false, false);
         }       
     }
 

@@ -1,5 +1,6 @@
 public class InteractionPiercingEffect:IDiceEffect {
     
+    public static float addedLifeDuration = 1.5f;
     public void ActivateEffect()
     {
         PlayerStats.Instance.ActivatePiercing();

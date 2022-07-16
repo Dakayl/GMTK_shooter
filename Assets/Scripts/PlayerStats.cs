@@ -46,15 +46,15 @@ public class PlayerStats : MonoBehaviour
     public float baseBulletSize = 1;           // Entity's base range
 
     [HideInInspector]
-    public float attackDamage;                  // Entity's current attack damage
+    public float attackDamage;                 // Entity's current attack damage
     [HideInInspector]
-    public float attackSpeed;                   // Entity's current number of attack per second
+    public float attackSpeed;                  // Entity's current number of attack per second
     [HideInInspector]
-    public float attackRange;                   // Entity's current attack range
+    public float attackRange;                  // Entity's current attack range
      [HideInInspector]
     public float bulletSize;                   // Entity's current number of attack per second
 
-    private bool isPiercingMode = false;        // Is Player shooting piercing bullets ?
+    private bool isPiercingMode = false;       // Is Player shooting piercing bullets ?
     public void ActivatePiercing() { isPiercingMode = true; }
     public bool isPiercingActivated { get { return isPiercingMode; }}
 
