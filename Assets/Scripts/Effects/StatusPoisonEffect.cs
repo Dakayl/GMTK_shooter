@@ -7,7 +7,7 @@ public class StatusPoisonffect:IDiceEffect {
         PlayerStats.Instance.ActivatePoison();
     }
     public string getTitle() {
-        return "Poison bullets";
+        return "Damage Type";
     }
     public string getHtmlText() {
         return string.Format("Stack <b>{0} poison</b> per hit, damages apply every <b>{1} sec</b>", stackNumber, dotTickDuration);

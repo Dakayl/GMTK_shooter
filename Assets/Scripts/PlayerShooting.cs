@@ -10,6 +10,7 @@ public class PlayerShooting : MonoBehaviour
     private GameObject projectilePrefab;
     [SerializeField]
     private float bulletForce = 20f;
+    private float deviationAngle = 0.15f;
 
     private bool isCoolingDown = false;
     private float coolDownTimer = 0f;
@@ -18,7 +19,13 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            Shoot();
+            Debug.Log(PlayerStats.Instance.isTwoBulletsActivated);
+            if(PlayerStats.Instance.isTwoBulletsActivated) {
+                Shoot(-deviationAngle);
+                Shoot(+deviationAngle);
+            } else {
+                Shoot();
+            }
         }
 
         // Attack cooldown
@@ -34,7 +41,7 @@ public class PlayerShooting : MonoBehaviour
     }
 
 
-    private void Shoot()
+    private void Shoot(float angle = 0)
     {
         if(isCoolingDown == false)
         {

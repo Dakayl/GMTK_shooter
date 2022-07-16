@@ -1,14 +1,15 @@
 public class FightDraculaMode:IDiceEffect {
     
+    public static float percentageOfLife = 0.1f;
     public void ActivateEffect()
     {
         PlayerStats.Instance.ActivateDracula();
     }
     public string getTitle() {
-        return "Dracula Bullets";
+        return "Fight Mode";
     }
     public string getHtmlText() {
-        return "Shoot and regain health";
+        return "Dracula mode : Shoot and regain health";
     }
     public override string ToString()
     {

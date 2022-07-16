@@ -5,7 +5,7 @@ public class InteractionExplosionEffect:IDiceEffect {
         PlayerStats.Instance.ActivateExploding();
     }
     public string getTitle() {
-        return "Exploding";
+        return "Impact reaction";
     }
     public string getHtmlText() {
         return "Your bullets <b>explode</b> on wall and ennemies, dealing AOE damages !";

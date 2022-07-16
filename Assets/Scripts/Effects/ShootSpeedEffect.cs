@@ -1,13 +1,13 @@
 public class ShootSpeedEffect:IDiceEffect {
     
-    private float bonusSpeed = 10;
+    private static float bonusSpeed = 10;
 
     public void ActivateEffect()
     {
         PlayerStats.Instance.attackSpeed += bonusSpeed;
     }
     public string getTitle() {
-        return "Shoot Speed";
+        return "Projectile Upgrade";
     }
     public string getHtmlText() {
         return "Shoot bullets <b>faster</b> !";
