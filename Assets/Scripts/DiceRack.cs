@@ -5,14 +5,12 @@ using System.Collections.Generic;
 
 public class DiceRack : MonoBehaviour
 {
+    [SerializeField] private GameObject diceUIPrefab;
     private List<Dice> diceRack;
-
     private List<DiceFace> currentFaces;
 
-    // Start is called before the first frame update
-    void Awake()
+    public void Start()
     {
-          
           diceRack = new List<Dice>();
           Reset();
           
@@ -29,6 +27,18 @@ public class DiceRack : MonoBehaviour
           AddDice(three);
          
           Randomize();
+          ShowDices();
+    }
+
+    public void ShowDices(){
+        for(int index = 0; index < diceRack.Count; index++ ) {
+            GameObject diceUI = Instantiate(diceUIPrefab);
+            diceUI.transform.parent = this.gameObject.transform;
+            RectTransform transform = diceUI.GetComponent<RectTransform>();
+            if(transform) {
+                transform.position = new Vector3(-400 + index * 100, -25, 0);
+            }
+        }
     }
 
     public void AddDice(Dice newDice){
@@ -36,6 +46,7 @@ public class DiceRack : MonoBehaviour
     }
 
     public void Reset(){
+        Debug.Log(PlayerStats.Instance);
         PlayerStats.Instance.ResetStats();
     }
 

@@ -7,7 +7,7 @@ public class ShootDamageEffect:IDiceEffect {
         PlayerStats.Instance.attackDamage += bonusDamage;
     }
 
-     public override string ToString()
+    public override string ToString()
     {
         return "<ShootDmg Effect>";
     }
