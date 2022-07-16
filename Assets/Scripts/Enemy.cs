@@ -76,7 +76,8 @@ public class Enemy : MonoBehaviour
         {
             Kill();
         }
-        myMovement.TookDamage();
+        if(amount >= currentLifePoints/10)
+            myMovement.TookDamage();
     }
 
     public void PoisonTick() {
@@ -108,7 +109,7 @@ public class Enemy : MonoBehaviour
         GameObject myParticles = GameObject.Instantiate(deathParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
         Destroy(gameObject);
-        GameManager.Instance.ennemyKilled ++;
+        GameManager.Instance.NewEnemyKilled();
     }
     public void Update()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,10 +9,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] dontDestroyOnLoad;
+    [SerializeField]
+    private int firstLevelToLoad = 1;
 
-    private int currentLevel;
-    private int ennemyKilled;
-    
+    [HideInInspector]
+    public int currentLevel = 0;
+    [HideInInspector]
+    public int enemyKilled = 0;
+
+    private int lastLevelIndex;
+    private int enemyInLevel = 0;
+    private int enemyKilledInLevel = 0;
+
     private void Awake()
     {
         if (Instance != null)
@@ -21,16 +30,15 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        currentLevel = 1;
-        ennemyKilled = 0;
+
+        for (int i = 0; i < dontDestroyOnLoad.Length; i++)
+        {
+            DontDestroyOnLoad(dontDestroyOnLoad[i]);
+        }
+
+        LoadNewLevel(firstLevelToLoad);
     }
     private void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    private void Update()
     {
         
     }
@@ -42,5 +50,42 @@ public class GameManager : MonoBehaviour
     public void Resume ()
     {
         Time.timeScale = 1;
+    }
+
+    public void LoadNewLevel()
+    {
+        currentLevel++;
+        int nextLevelIndex = Random.Range(1, SceneManager.sceneCount);
+        if(SceneManager.sceneCount -1 > 1)
+        {
+            while (nextLevelIndex == lastLevelIndex)
+            {
+                nextLevelIndex = Random.Range(1,SceneManager.sceneCount);
+            }
+        }
+        SceneManager.LoadScene(nextLevelIndex);
+        enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemyKilledInLevel = 0;
+    }
+    public void LoadNewLevel(int levelIndex)
+    {
+        currentLevel++;
+        SceneManager.LoadScene(levelIndex);
+        enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemyKilledInLevel = 0;
+    }
+
+    public void GoToNextFloor()
+    {
+        if(enemyKilledInLevel >= enemyInLevel)
+        {
+            LoadNewLevel();
+        }
+    }
+
+    public void NewEnemyKilled()
+    {
+        enemyKilled++;
+        enemyKilledInLevel++;
     }
 }

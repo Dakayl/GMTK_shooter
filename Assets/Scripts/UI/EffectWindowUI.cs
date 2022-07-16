@@ -50,7 +50,7 @@ public class EffectWindowUI : MonoBehaviour
     }
 
     public void Show(){
-        killed.text = GameManager.Instance.ennemyKilled.ToString();
+        killed.text = GameManager.Instance.enemyKilled.ToString();
         level.text = GameManager.Instance.currentLevel.ToString();
         this.gameObject.SetActive(true);
     }
