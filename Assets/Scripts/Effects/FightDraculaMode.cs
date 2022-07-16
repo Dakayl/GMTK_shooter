@@ -1,6 +1,6 @@
 public class FightDraculaMode:IDiceEffect {
     
-    public static float percentageOfLife = 0.1f;
+    public static float percentageOfLife = 0.5f;
     public void ActivateEffect()
     {
         PlayerStats.Instance.ActivateDracula();

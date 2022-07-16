@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Offensive stats")]
     [Tooltip("Entity's base attack damage")]
-    public float baseAttackDamage = 3;          // Entity's base attack damage
+    public float baseAttackDamage = 20;          // Entity's base attack damage
     [Tooltip("Entity's base attack speed")]
     public float baseAttackSpeed = 2;           // Entity's base attack per second
      [Tooltip("Entity's base attack range")]
@@ -129,7 +129,7 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     public void HealToFull()
     {
-        currentHP = maxHP;
+        currentHP = maxHP/2;
     }
 
     /// <summary>
