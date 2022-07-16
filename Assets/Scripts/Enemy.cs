@@ -16,10 +16,12 @@ public class Enemy : MonoBehaviour
     private float currentElectricDuration = 0;
     public static float baselifePoints = 100;
     private float currentLifePoints = 100;
-    private float baseLifePoints = 100;
+    private float attackDamage = 25;
+    private EnemyMovement myMovement;
 
     public void Awake() {
-        currentLifePoints = baselifePoints;       
+        currentLifePoints = baselifePoints;
+        myMovement = GetComponent<EnemyMovement>();
     }
 
     public void isShot(float damage, bool isFire = false, bool isPoison = false, bool isElectric = false) {
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
         {
             Kill();
         }
+        myMovement.TookDamage();
     }
 
     public void PoisonTick() {
@@ -104,6 +107,11 @@ public class Enemy : MonoBehaviour
         if(rectTransform) {
             rectTransform.sizeDelta = new Vector2 (ratio, 0.14f);
         }
+    }
+
+    public void DamagePlayer()
+    {
+        PlayerStats.Instance.TakeDamage(attackDamage);
     }
 
 }

@@ -9,7 +9,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField]
     private GameObject projectilePrefab;
     [SerializeField]
-    private float bulletForce = 20f;
+    private float bulletForce = 2f;
     private float deviationAngle = 0.15f;
 
     private bool isCoolingDown = false;

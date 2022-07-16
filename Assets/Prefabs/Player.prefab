@@ -246,9 +246,9 @@ GameObject:
   - component: {fileID: 7718153283945890325}
   - component: {fileID: 7718153283945890331}
   - component: {fileID: 7718153283945890330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
   invinvicilityFramesDuration: 0
   areInvicibilityFramesActive: 0
   isDead: 0
-  baseAttackDamage: 3
+  baseAttackDamage: 20
   baseAttackSpeed: 2
   baseAttackRange: 25
   baseBulletSize: 1
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 7718153283711107749}
   projectilePrefab: {fileID: 6062779982876408846, guid: 637c4e3f40fe08f4fb1f26523d6269e0, type: 3}
-  bulletForce: 20
+  bulletForce: 1
 --- !u!70 &7718153283945890330
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -366,6 +366,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0, y: -0.0032052398}
+  m_Size: {x: 0.5, y: 0.9935895}
   m_Direction: 0

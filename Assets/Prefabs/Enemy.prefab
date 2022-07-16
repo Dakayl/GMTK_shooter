@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 23782308158150884}
   - component: {fileID: 4282489563195786152}
   - component: {fileID: 31670381225739872}
+  - component: {fileID: 293156549}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -401,6 +402,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticlesPrefab: {fileID: 8799278658428971708, guid: 441b1cb705b0e5a4f8bd0ea0c026b2a8, type: 3}
   greenbar: {fileID: 6767858438778791507}
+--- !u!50 &31670381225739878
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125842958657737921}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!70 &31670381225739872
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -417,3 +439,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.0032052398}
   m_Size: {x: 0.5, y: 1.0064105}
   m_Direction: 0
+--- !u!114 &293156549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125842958657737921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cb3db69cb35784fadff4a6a126fcc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMovementType: 0

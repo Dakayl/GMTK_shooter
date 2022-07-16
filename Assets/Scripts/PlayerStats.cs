@@ -173,6 +173,20 @@ public class PlayerStats : MonoBehaviour
         StartCoroutine(InvincibilityFrames(customDuration));
     }
 
+    public void TakeDamage(float amount)
+    {
+        if (!areInvicibilityFramesActive)
+        {
+            currentHP -= amount;
+            ActivateInvincinbilityFrames();
+            Debug.Log("HP LEFT : " + currentHP);
+            if(currentHP <= 0)
+            {
+                Debug.Log("PLAYER IS DEAD");
+            }
+        }
+    }
+
     #endregion
 
 
