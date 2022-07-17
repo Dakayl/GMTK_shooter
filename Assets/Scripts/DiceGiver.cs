@@ -22,6 +22,8 @@ public class DiceGiver : MonoBehaviour
             if(spriteRenderer != null && emptySprite != null) {
                 spriteRenderer.sprite = emptySprite;
             }
+
+            GameManager.Instance.OpenDoor();
         }
     }
         

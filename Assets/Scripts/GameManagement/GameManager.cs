@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             }
         }
         SceneManager.LoadScene(nextLevelIndex);
-        NewDiceLaunch();
+        playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
     }
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         currentLevel++;
         SceneManager.LoadScene(levelIndex);
-        NewDiceLaunch();
+        playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
     }
@@ -123,6 +123,11 @@ public class GameManager : MonoBehaviour
     {
         enemyKilled++;
         enemyKilledInLevel++;
+
+        if (enemyKilledInLevel >= enemyInLevel)
+        {
+            OpenDoor();
+        }
     }
 
 
@@ -140,5 +145,13 @@ public class GameManager : MonoBehaviour
 
         UIAnim.Play("Default");
         LoadNewLevel(firstLevelToLoad);
+    }
+
+    public void OpenDoor()
+    {
+        if (enemyKilledInLevel >= enemyInLevel)
+        {
+            GameObject.Find("ExitDoor").GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 }

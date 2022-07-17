@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 381242134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2238,7 +2238,7 @@ GameObject:
   - component: {fileID: 1705500806}
   - component: {fileID: 1705500805}
   - component: {fileID: 1705500807}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: DiceGiver
   m_TagString: DiceGiver
   m_Icon: {fileID: 0}

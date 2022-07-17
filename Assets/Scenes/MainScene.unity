@@ -4110,7 +4110,7 @@ MonoBehaviour:
   - {fileID: 1520657077}
   - {fileID: 2006063582}
   - {fileID: 1768436725}
-  firstLevelToLoad: 4
+  firstLevelToLoad: 3
   UIAnim: {fileID: 1945360423}
   playerStats: {fileID: 2006063592}
   playerMovement: {fileID: 2006063591}
