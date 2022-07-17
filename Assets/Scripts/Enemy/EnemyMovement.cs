@@ -32,6 +32,8 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector] public bool isStunned = false;
     private Coroutine canMoveCooldown;
     private bool isFacingRight = true;
+    [SerializeField] private Animator animator;
+
 
     // Patrol related
     private float patrolYoyoTimer;
@@ -54,7 +56,7 @@ public class EnemyMovement : MonoBehaviour
     private bool moveLikeJagger = false;
     private bool fleeing = false;
     private bool canShoot = true;
-
+   
 
     private void Awake()
     {
@@ -148,6 +150,7 @@ public class EnemyMovement : MonoBehaviour
             if(myMovement == Vector2.zero)  // Only count when not moving
             {
                 patrolYoyoTimer += Time.deltaTime;
+                animator.SetBool("isMoving", false);
             }
             if(patrolYoyoTimer >= patrolYoyoNextStep)
             {
@@ -164,6 +167,7 @@ public class EnemyMovement : MonoBehaviour
                 }
 
                 myMovement *= 0.4f;
+                animator.SetBool("isMoving", true);
                 StartCoroutine(moveForHowLong(Random.Range(0.5f, 2)));
             }
         }
@@ -174,7 +178,7 @@ public class EnemyMovement : MonoBehaviour
         if (canMove && !isStunned)
         {
             myMovement = GetPlayerDirection();
-
+            animator.SetBool("isMoving", true);
             if(Physics2D.OverlapCircle(transform.position, playerAttackRange, LayerMask.GetMask("Player")))
             {
                 StartCoroutine(MeleeAttack());
@@ -202,24 +206,29 @@ public class EnemyMovement : MonoBehaviour
                         {
                             myMovement = GetPlayerDirection() * -1;
                             myMovement = myMovement + PerpendicularVector(myMovement, moveLikeJagger);
+                            animator.SetBool("isMoving", true);
                         }
                         else
                         {
                             myMovement = GetPlayerDirection();
                             myMovement = myMovement + PerpendicularVector(myMovement, moveLikeJagger);
+                            animator.SetBool("isMoving", true);
                         }
                     }
                 }
                 else
                 {
-                    if(canShoot)
+                    if(canShoot) {
                         StartCoroutine(RangeAttack());
+                    }
+                        
                 }
             }
             else
             {
                 fleeing = false;
                 myMovement = GetPlayerDirection();
+                animator.SetBool("isMoving", true);
             }
             myMovement.Normalize();
         }
@@ -260,6 +269,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private IEnumerator MeleeAttack()
     {
+        animator.SetBool("isMoving", false);
         myMovement = Vector2.zero;
         CanMoveBlocking(1f);
 
@@ -292,6 +302,7 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator RangeAttack()
     {
+        animator.SetBool("isMoving", false);
         canShoot = false;
         myMovement = Vector2.zero;
         CanMoveBlocking(1f);
@@ -328,6 +339,7 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator BlockCanMove(float duration)
     {
+        animator.SetBool("isMoving", false);
         canMove = false;
         yield return new WaitForSeconds(duration);
         canMove = true;
