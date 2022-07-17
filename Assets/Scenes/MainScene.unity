@@ -3797,7 +3797,6 @@ MonoBehaviour:
   - {fileID: 1583407459}
   - {fileID: 234044182}
   firstLevelToLoad: 1
-
   UIAnim: {fileID: 1945360423}
   playerStats: {fileID: 2006063592}
   playerMovement: {fileID: 2006063591}
@@ -4009,7 +4008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1447026141

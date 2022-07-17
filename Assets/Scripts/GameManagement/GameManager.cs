@@ -124,10 +124,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextFloor()
     {
-        if(enemyKilledInLevel >= enemyInLevel)
-        {
-            UIAnim.Play("ScreenTransition");
-        }
+        UIAnim.Play("ScreenTransition");
     }
 
     public void NewDiceLaunch()
