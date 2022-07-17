@@ -4110,7 +4110,7 @@ MonoBehaviour:
   - {fileID: 1520657077}
   - {fileID: 2006063582}
   - {fileID: 1768436725}
-  firstLevelToLoad: 1
+  firstLevelToLoad: 4
   UIAnim: {fileID: 1945360423}
   playerStats: {fileID: 2006063592}
   playerMovement: {fileID: 2006063591}
@@ -4870,6 +4870,10 @@ PrefabInstance:
     - target: {fileID: 7718153283945890321, guid: f4ac1011dd083cc4a89eba8d60417a02, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718153283945890324, guid: f4ac1011dd083cc4a89eba8d60417a02, type: 3}
+      propertyPath: baseAttackSpeed
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7718153283945890325, guid: f4ac1011dd083cc4a89eba8d60417a02, type: 3}
       propertyPath: mainCamera
