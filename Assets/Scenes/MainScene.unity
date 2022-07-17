@@ -4558,6 +4558,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7718153283945890324, guid: f4ac1011dd083cc4a89eba8d60417a02, type: 3}
+      propertyPath: baseMaxHP
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718153283945890324, guid: f4ac1011dd083cc4a89eba8d60417a02, type: 3}
       propertyPath: baseAttackSpeed
       value: 1.75
       objectReference: {fileID: 0}
