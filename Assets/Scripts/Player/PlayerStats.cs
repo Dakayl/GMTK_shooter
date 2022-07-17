@@ -120,6 +120,11 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        Debug.Log("PLAYER HP : " + currentHP);
+    }
+
     #endregion
 
     #region Public Functions
@@ -154,6 +159,7 @@ public class PlayerStats : MonoBehaviour
         isFireMode = false;
         isPoisonMode = false;
         isElectricityMode = false;
+        isDead = false;
     }
 
     /// <summary>

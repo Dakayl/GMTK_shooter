@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(dontDestroyOnLoad[i]);
         }
 
+        
+    }
+    private void Start()
+    {
         LoadNewLevel(firstLevelToLoad);
     }
 
@@ -56,6 +60,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                Debug.Log("Trying my best");
                 UIAnim.Play("Reset");
             }
         }
@@ -137,6 +142,7 @@ public class GameManager : MonoBehaviour
         playerMovement.setMovement(true);
         playerShooting.setShooting(true);
         playerStats.ResetStats();
+        playerStats.HealToFull();
         currentLevel = 0;
         enemyKilled = 0;
         enemyInLevel = 0;
