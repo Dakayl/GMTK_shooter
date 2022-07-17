@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            nextLevelIndex = Random.Range(4,7);
+            nextLevelIndex = Random.Range(4,8);
         }
         SceneManager.LoadScene(nextLevelIndex);
         if(currentLevel == 1)
