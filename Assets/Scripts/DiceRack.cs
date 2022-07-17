@@ -23,27 +23,41 @@ public class DiceRack : MonoBehaviour
             return;
         }
         Instance = this;
-
         diceRack = new List<Dice>();
+        CreateDicesUI();
+    }
+
+    public void addInteractionDice(){
         Dice one = new Dice();
         one.CreateInteractionDice();
         AddDice(one);
-          
-        Dice two = new Dice();
+        CreateDicesUI();
+        RandomizeRealtime();
+    }
+    public void addShootDice(){
+         Dice two = new Dice();
         two.CreateShootDice();
         AddDice(two);
+        CreateDicesUI();
+        RandomizeRealtime();
 
-        Dice three = new Dice();
+    }
+    public void addStatusDice(){
+       Dice three = new Dice();
         three.CreateStatusDice();
         AddDice(three);
+        CreateDicesUI();
+        RandomizeRealtime();
+    }
 
+    public void addFightDice(){
         Dice four = new Dice();
         four.CreateFightDice();
         AddDice(four);
-
         CreateDicesUI();
-
+        RandomizeRealtime();
     }
+
     public void Start()
     {
         

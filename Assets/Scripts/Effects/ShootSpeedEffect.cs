@@ -1,6 +1,6 @@
 public class ShootSpeedEffect:IDiceEffect {
     
-    private static float bonusSpeed = 3;
+    private static float bonusSpeed = 1.5f;
 
     public void ActivateEffect()
     {
