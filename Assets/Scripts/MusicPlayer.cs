@@ -4,7 +4,7 @@ public class MusicPlayer : MonoBehaviour
 {
     //static instance of the Player to check if we should keep or delete new instances
     public static MusicPlayer Instance;
-    protected static float globalVolume = 0.5f;
+    protected static float globalVolume = 0.1f;
     protected static AudioSource musicSource;
     private const float fadeOutDuration = 1.2f;
     private const float fadeInDuration = 1.2f;  

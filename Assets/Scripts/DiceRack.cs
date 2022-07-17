@@ -64,7 +64,6 @@ public class DiceRack : MonoBehaviour
 
     public void Start()
     {
-        
         //Reset();
         //RandomizeRealtime();
         //Randomize();
