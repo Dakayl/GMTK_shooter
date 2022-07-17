@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     private GameObject explosionPrefab;
     [SerializeField]
     private GameObject destroyParticlePrefab;
+    [SerializeField]
+    private bool isPlayerBullet = true;
     private static Color poisonColor = new Color(0.051f,1f,0f,1);
     private static Color fireColor = new Color(1f,0.235f,0f,1f);
     private static Color electricityColor = new Color(0f,0.8652f,1f,1f);
@@ -18,20 +20,35 @@ public class Bullet : MonoBehaviour
     private bool isFireBullet;
     private bool isPoisonBullet;
     private bool isElectricBullet;
-    private float damage;
+    [HideInInspector] public float damage;
     private float lifeDuration = 2.9f;
+    
 
      Color tintColor;
 
     public void Awake(){
-        isPiercingBullet = PlayerStats.Instance.isPiercingActivated;
-        isBouncingBullet = PlayerStats.Instance.isBouncingActivated;
-        isExplodingBullet = PlayerStats.Instance.isExplodingActivated;
-        isDraculaBullet = PlayerStats.Instance.isDraculaActivated;
-        isFireBullet =  PlayerStats.Instance.isFireActivated;
-        isPoisonBullet = PlayerStats.Instance.isPoisonActivated;
-        isElectricBullet = PlayerStats.Instance.isElectricityActivated;
-        damage = PlayerStats.Instance.attackDamage;
+        if (isPlayerBullet)
+        {
+            isPiercingBullet = PlayerStats.Instance.isPiercingActivated;
+            isBouncingBullet = PlayerStats.Instance.isBouncingActivated;
+            isExplodingBullet = PlayerStats.Instance.isExplodingActivated;
+            isDraculaBullet = PlayerStats.Instance.isDraculaActivated;
+            isFireBullet =  PlayerStats.Instance.isFireActivated;
+            isPoisonBullet = PlayerStats.Instance.isPoisonActivated;
+            isElectricBullet = PlayerStats.Instance.isElectricityActivated;
+            damage = PlayerStats.Instance.attackDamage;
+        }
+        else
+        {
+            isPiercingBullet = false;
+            isBouncingBullet = false;
+            isExplodingBullet = false;
+            isDraculaBullet = false;
+            isFireBullet = false;
+            isPoisonBullet = false;
+            isElectricBullet = false;
+            damage = 3;
+        }
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if(spriteRenderer != null) {
             if(isElectricBullet) {
@@ -55,14 +72,24 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-         if(collision.gameObject.tag == "Enemy")
+         if(collision.gameObject.tag == "Enemy" && isPlayerBullet)
         {
             OnEnemyCollision(collision.gameObject.GetComponent<Enemy>());
             ManageCollision(collision);
-        } else if(collision.gameObject.tag == "MapWall"){
+        }
+        else if(collision.gameObject.tag == "MapWall"){
 
             OnWallCollision(); 
             ManageCollision(collision);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !isPlayerBullet)
+        {
+            OnPlayerCollision(collision.gameObject.GetComponent<PlayerStats>());
+            lifeDuration = 0;
         }
     }
 
@@ -79,6 +106,11 @@ public class Bullet : MonoBehaviour
         }
         
       
+    }
+
+    public void OnPlayerCollision(PlayerStats pStats)
+    {
+        pStats.TakeDamage(damage);
     }
 
     public void OnWallCollision(){

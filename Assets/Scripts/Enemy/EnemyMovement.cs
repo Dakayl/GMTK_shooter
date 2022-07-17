@@ -50,6 +50,10 @@ public class EnemyMovement : MonoBehaviour
     [Header("Shooting")]
     [SerializeField]
     private GameObject projectilePrefab;
+    private float shootCooldown = 1;
+    private bool moveLikeJagger = false;
+    private bool fleeing = false;
+    private bool canShoot = true;
 
 
     private void Awake()
@@ -67,16 +71,22 @@ public class EnemyMovement : MonoBehaviour
         switch (myMovementType)
         {
             case movementType.rushing:
-                playerDetectionRange = 6.5f;
+                playerDetectionRange = 5.5f;
                 playerAttackRange = 1.5f;
-                return;
+                break;
             case movementType.shooting:
             default:
-                playerDetectionRange = 6.5f;
+                playerDetectionRange = 5.5f;
                 playerAttackRange = 4f;
-                return;
+                break;
 
         }
+
+        if (Random.Range(0, 2) == 0)
+            moveLikeJagger = false;
+        else
+            moveLikeJagger = true;
+
     }
     void Update()
     {
@@ -175,7 +185,56 @@ public class EnemyMovement : MonoBehaviour
 
     private void Shooting()
     {
+        if (!isStunned && canMove)
+        {
+            if (Physics2D.OverlapCircle(transform.position, playerAttackRange, LayerMask.GetMask("Player")))
+            {
+                if(!canShoot)
+                {
+                    if (Physics2D.OverlapCircle(transform.position, playerAttackRange*0.75f, LayerMask.GetMask("Player")))
+                    {
+                        fleeing = true;
+                        myMovement = GetPlayerDirection() * -1;
+                    }
+                    else
+                    {
+                        if (fleeing)
+                        {
+                            myMovement = GetPlayerDirection() * -1;
+                            myMovement = myMovement + PerpendicularVector(myMovement, moveLikeJagger);
+                        }
+                        else
+                        {
+                            myMovement = GetPlayerDirection();
+                            myMovement = myMovement + PerpendicularVector(myMovement, moveLikeJagger);
+                        }
+                    }
+                }
+                else
+                {
+                    if(canShoot)
+                        StartCoroutine(RangeAttack());
+                }
+            }
+            else
+            {
+                fleeing = false;
+                myMovement = GetPlayerDirection();
+            }
+            myMovement.Normalize();
+        }
+    }
 
+    private Vector2 PerpendicularVector(Vector2 theVector, bool goClockwise)
+    {
+        if (goClockwise)
+        {
+            return new Vector2(theVector.y, -theVector.x);
+        }
+        else
+        {
+            return new Vector2(-theVector.y, theVector.x);
+        }
     }
 
     private Vector2 GetPlayerDirection()
@@ -226,9 +285,44 @@ public class EnemyMovement : MonoBehaviour
 
         if(playerHit != null)
         {
-            Debug.Log("Damaging player : " );
             myStats.DamagePlayer();
         }
+
+    }
+
+    private IEnumerator RangeAttack()
+    {
+        canShoot = false;
+        myMovement = Vector2.zero;
+        CanMoveBlocking(1f);
+
+        moveLikeJagger = !moveLikeJagger;
+
+        Vector2 lookDirection =
+            new Vector2(playerTransform.position.x, playerTransform.position.y)
+            - new Vector2(weaponRotationPoint.position.x, weaponRotationPoint.position.y);
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        weaponRotationPoint.rotation = Quaternion.Euler(0, 0, angle);
+
+        meleeWeaponAnimator.Play("BowAttack Buildup");
+
+        yield return new WaitForSeconds(0.3f);
+
+        lookDirection =
+            new Vector2(playerTransform.position.x, playerTransform.position.y)
+            - new Vector2(weaponRotationPoint.position.x, weaponRotationPoint.position.y);
+        angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        weaponRotationPoint.rotation = Quaternion.Euler(0, 0, angle);
+        meleeWeaponAnimator.Play("BowAttack Shoot");
+
+
+        GameObject enemyProjectile = Instantiate(projectilePrefab, weaponRotationPoint.position, weaponRotationPoint.rotation);
+        enemyProjectile.GetComponent<Bullet>().damage = myStats.currentAttackDamage;
+        Rigidbody2D bulletRB = enemyProjectile.GetComponent<Rigidbody2D>();
+        bulletRB.AddForce(weaponRotationPoint.right * 12, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(2f);
+        canShoot = true;
 
     }
 
