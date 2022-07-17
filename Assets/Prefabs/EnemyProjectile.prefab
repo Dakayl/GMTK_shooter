@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6714142238324904178}
   - component: {fileID: 8445008291113200813}
   - component: {fileID: -7691149183961411419}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cbc2dfcc8dc8845b50ce5ab7adc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 0}
+  destroyParticlePrefab: {fileID: 0}
 --- !u!114 &-7691149183961411419
 MonoBehaviour:
   m_ObjectHideFlags: 0

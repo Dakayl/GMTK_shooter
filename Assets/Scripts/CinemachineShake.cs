@@ -7,8 +7,7 @@ public class CinemachineShake : MonoBehaviour
 {
     public static CinemachineShake Instance { get; private set; } // Singleton
 
-    private CinemachineVirtualCamera cinemachineVC;
-    private float shakeTimer;
+
     private void Awake()
     {
         if (Instance != null)
@@ -18,32 +17,11 @@ public class CinemachineShake : MonoBehaviour
             return;
         }
         Instance = this;
-
-        cinemachineVC = GetComponent<CinemachineVirtualCamera>();
-    }
-    private void Update()
-    {
-        if (shakeTimer > 0)
-        {
-            shakeTimer -= Time.deltaTime;
-            if(shakeTimer <= 0)
-            {
-                CinemachineBasicMultiChannelPerlin cinemachineBMCP =
-                    cinemachineVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-                cinemachineBMCP.m_AmplitudeGain = 0;
-
-            }
-        }
     }
 
     public void ShakeCamera(float intensity, float duration)
     {
-
-        CinemachineBasicMultiChannelPerlin cinemachineBMCP =
-            cinemachineVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-        cinemachineBMCP.m_AmplitudeGain = intensity;
-        shakeTimer = duration;
+        CinemachineImpulseSource mySource = gameObject.GetComponent<CinemachineImpulseSource>();
+        mySource.GenerateImpulse(intensity * 0.15f);
     }
 }
