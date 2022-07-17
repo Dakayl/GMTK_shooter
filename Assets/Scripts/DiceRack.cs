@@ -47,11 +47,11 @@ public class DiceRack : MonoBehaviour
     public void Start()
     {
         
-          Reset();
-        RandomizeRealtime();
-          //Randomize();
-          //ShowDicesUI();
-          //effectWindowUI.changeDices(diceRack);
+        //Reset();
+        //RandomizeRealtime();
+        //Randomize();
+        //ShowDicesUI();
+        //effectWindowUI.changeDices(diceRack);
     }
 
      // Update is called once per frame
@@ -116,7 +116,8 @@ public class DiceRack : MonoBehaviour
     }
 
     public void Reset(){
-        PlayerStats.Instance.ResetStats();
+        if(PlayerStats.Instance != null)
+            PlayerStats.Instance.ResetStats();
     }
     
 

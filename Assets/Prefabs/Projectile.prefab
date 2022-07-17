@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 6062779982876408846, guid: 7d5aab4e4b645214f8e36d20cd694f51, type: 3}
+  destroyParticlePrefab: {fileID: 4071370034921819659, guid: 17d2a96914c101f4db3470b053b2f077, type: 3}
 --- !u!114 &-7691149183961411419
 MonoBehaviour:
   m_ObjectHideFlags: 0

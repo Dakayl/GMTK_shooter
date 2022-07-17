@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     private int firstLevelToLoad = 1;
     [SerializeField]
     private Animator UIAnim;
+    [SerializeField]
+    private PlayerStats playerStats;
+    [SerializeField]
+    private PlayerMovement playerMovement;
+    [SerializeField]
+    private PlayerShooting playerShooting ;
 
     [HideInInspector]
     public int currentLevel = 0;
@@ -22,6 +28,8 @@ public class GameManager : MonoBehaviour
     private int lastLevelIndex;
     private int enemyInLevel = 0;
     private int enemyKilledInLevel = 0;
+
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -40,6 +48,17 @@ public class GameManager : MonoBehaviour
         }
 
         LoadNewLevel(firstLevelToLoad);
+    }
+
+    private void Update()
+    {
+        if (isDead)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                UIAnim.Play("Reset");
+            }
+        }
     }
 
     public void Pause ()
@@ -63,6 +82,7 @@ public class GameManager : MonoBehaviour
             }
         }
         SceneManager.LoadScene(nextLevelIndex);
+        NewDiceLaunch();
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
     }
@@ -70,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         currentLevel++;
         SceneManager.LoadScene(levelIndex);
+        NewDiceLaunch();
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
     }
@@ -90,12 +111,32 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath()
     {
+        isDead = true;
         UIAnim.Play("GameOver");
+        playerMovement.setMovement(false);
+        playerShooting.setShooting(false);
     }
 
     public void NewEnemyKilled()
     {
         enemyKilled++;
         enemyKilledInLevel++;
+    }
+
+
+    public void ResetGame()
+    {
+        isDead = false;
+        playerMovement.setMovement(true);
+        playerShooting.setShooting(true);
+        playerStats.ResetStats();
+        currentLevel = 0;
+        enemyKilled = 0;
+        enemyInLevel = 0;
+        enemyKilledInLevel = 0;
+
+
+        UIAnim.Play("Default");
+        LoadNewLevel(firstLevelToLoad);
     }
 }

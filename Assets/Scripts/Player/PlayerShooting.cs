@@ -14,24 +14,26 @@ public class PlayerShooting : MonoBehaviour
 
     private bool isCoolingDown = false;
     private float coolDownTimer = 0f;
+    private bool canShoot = true;
 
     private void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (canShoot)
         {
-            if(Time.timeScale == 0) return;
-            if(isCoolingDown == false)
+            if (Input.GetButton("Fire1"))
             {
-                if(PlayerStats.Instance.isTwoBulletsActivated) {
-                    Shoot(-deviationAngle);
-                    Shoot(+deviationAngle);
-                } else {
-                    Shoot();  
+                if(Time.timeScale == 0) return;
+                if(isCoolingDown == false)
+                {
+                    if(PlayerStats.Instance.isTwoBulletsActivated) {
+                        Shoot(-deviationAngle);
+                        Shoot(+deviationAngle);
+                    } else {
+                        Shoot();  
+                    }
+                    isCoolingDown = true;
                 }
-                isCoolingDown = true;
             }
-            
-            
         }
         if (isCoolingDown)  // Attack cooldown
         {
@@ -54,5 +56,10 @@ public class PlayerShooting : MonoBehaviour
         if(PlayerStats.Instance.bulletSize > PlayerStats.Instance.baseBulletSize) {
             bullet.transform.localScale *= PlayerStats.Instance.bulletSize;;
         }
+    }
+
+    public void setShooting(bool status)
+    {
+        canShoot = status;
     }
 }

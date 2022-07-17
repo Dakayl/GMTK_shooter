@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 playerMovement;
     private Vector2 mousePosition;
     private bool facingRight = true;
+    private bool canMove = true;
 
     void Awake(){
        animator = spriteRenderer.GetComponent<Animator>();
@@ -34,14 +35,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        playerMovement.x = Input.GetAxisRaw("Horizontal");
-        playerMovement.y = Input.GetAxisRaw("Vertical");
+        if (canMove)
+        {
+            playerMovement.x = Input.GetAxisRaw("Horizontal");
+            playerMovement.y = Input.GetAxisRaw("Vertical");
 
-        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if(playerMovement.x  != 0 || playerMovement.y != 0){
-            animator.SetBool("isMoving", true);
-        } else {
-            animator.SetBool("isMoving", false);
+            mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            if(playerMovement.x  != 0 || playerMovement.y != 0){
+                animator.SetBool("isMoving", true);
+            } else {
+                animator.SetBool("isMoving", false);
+            }
         }
     }
 
@@ -77,5 +81,13 @@ public class PlayerMovement : MonoBehaviour
         scaleToFlip.y *= howToFlip.y;
         scaleToFlip.z *= howToFlip.z;
         whoToFlip.localScale = scaleToFlip;
+    }
+
+    public void setMovement(bool status)
+    {
+        canMove = status;
+        if (!status) {
+            playerMovement = Vector2.zero;
+        }
     }
 }

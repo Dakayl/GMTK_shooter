@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]
     private GameObject explosionPrefab;
+    [SerializeField]
+    private GameObject destroyParticlePrefab;
     private static Color poisonColor = new Color(0.051f,1f,0f,1);
     private static Color fireColor = new Color(1f,0.235f,0f,1f);
     private static Color electricityColor = new Color(0f,0.8652f,1f,1f);
@@ -47,7 +49,7 @@ public class Bullet : MonoBehaviour
         //checkRange
         lifeDuration -= Time.deltaTime;
         if(lifeDuration <= 0) {
-            Destroy(gameObject);
+            DestroyBullet();
         }
     }
 
@@ -112,14 +114,21 @@ public class Bullet : MonoBehaviour
         }
         if(isExplodingBullet) {
             Explode();
-            Destroy(gameObject);
+            DestroyBullet();
             return;
         }
         if(!isPiercingBullet) {
-            Destroy(gameObject);
+            DestroyBullet();
             return;
         }
         lifeDuration += InteractionPiercingEffect.addedLifeDuration;
         isPiercingBullet = false;
+    }
+
+    private void DestroyBullet()
+    {
+        GameObject particles = Instantiate(destroyParticlePrefab, transform.position, new Quaternion());
+        particles.GetComponent<ParticleSystem>().Emit(10);
+        Destroy(gameObject);
     }
 }

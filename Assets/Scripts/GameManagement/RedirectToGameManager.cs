@@ -23,4 +23,9 @@ public class RedirectToGameManager : MonoBehaviour
     {
         GameManager.Instance.NewDiceLaunch();
     }
+
+    public void ResetGame()
+    {
+        GameManager.Instance.ResetGame();
+    }
 }
