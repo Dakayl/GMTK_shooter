@@ -72,7 +72,6 @@ public class DiceRoll : MonoBehaviour
         // Get the opposite dice side
         int newFaceId = 7 - sideId;
         Sprite sprite = sides[newFaceId-1].GetSprite();
-         Debug.Log("I'm a dice and I'm down "+newFaceId);
         DiceFace face = myDice.ChangeCurrentFace(newFaceId, sprite);
         GetComponent<Animator>().Play("DiceDisparition");
     }

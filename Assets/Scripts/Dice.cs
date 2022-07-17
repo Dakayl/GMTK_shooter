@@ -30,8 +30,9 @@ public class Dice
         AddFace (new DiceFace(new InteractionExplosionEffect()));
         AddFace (new DiceFace(new InteractionPiercingEffect()));
         AddFace (new DiceFace(new InteractionPiercingEffect()));
-        AddFace (new DiceFace(new InteractionBouncingEffect()));
         AddFace (new DiceFace(new InteractionExplosionEffect()));
+        AddFace (new DiceFace(new InteractionBouncingEffect()));
+       
         
         currentFace = faceList[0];
     }
