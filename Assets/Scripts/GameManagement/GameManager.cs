@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioClip[] musics;
 
+    [SerializeField] private AudioClip[] steps;
+    [SerializeField] private AudioClip[] looseJingle;
+
     [HideInInspector]
     public int currentLevel = 0;
     [HideInInspector]
@@ -42,17 +45,14 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-
-
-        for (int i = 0; i < dontDestroyOnLoad.Length; i++)
-        {
-            DontDestroyOnLoad(dontDestroyOnLoad[i]);
-        }
-
-        
     }
     private void Start()
     {
+        for (int i = 0; i < dontDestroyOnLoad.Length; i++)
+        {
+            //Debug.Log(dontDestroyOnLoad[i]);
+            DontDestroyOnLoad(dontDestroyOnLoad[i]);
+        }
         LoadNewLevel(firstLevelToLoad);
         UIAnim.Play("WelcomeUI");
     }
@@ -63,15 +63,30 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                MusicPlayer.Instance.Stop();
+                playRandomFromArray(looseJingle, 0.8f);
                 Debug.Log("Trying my best");
                 UIAnim.Play("Reset");
+                
             }
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
+            playRandomFromArray(steps, 0.8f);
             UIAnim.Play("ScreenTransition");
+           
         }
     }
+
+    public void playRandomFromArray(AudioClip[] listClips, float volume = 0.7f){
+        if(listClips.Length < 1) return;
+        int index = Random.Range(0, listClips.Length);
+        if(listClips[index] != null) {
+            AudioClip clip = listClips[index];
+            SoundPlayer.Play(clip, volume);
+        }
+    }
+
 
     public void Pause ()
     {

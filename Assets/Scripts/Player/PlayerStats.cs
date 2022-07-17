@@ -122,7 +122,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("PLAYER HP : " + currentHP);
+        //Debug.Log("PLAYER HP : " + currentHP);
     }
 
     #endregion

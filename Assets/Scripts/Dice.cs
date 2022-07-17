@@ -79,7 +79,6 @@ public class Dice
     {
         currentFace = faceList[newFaceId-1];
         currentFace.effect.ActivateEffect();
-        Debug.Log(currentFace.effect+" "+(newFaceId-1));
         currentSprite = sprite;
         DiceRack.Instance.NewCurrentFace(currentFace);
 
