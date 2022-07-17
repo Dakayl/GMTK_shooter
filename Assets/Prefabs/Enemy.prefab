@@ -836,6 +836,20 @@ MonoBehaviour:
   fireParticlesPrefab: {fileID: 8799278658428971708, guid: 8d401be63350e24489be77346dd454fa, type: 3}
   thunderParticlesPrefab: {fileID: 8799278658428971708, guid: 7c55ed66b6f747a499fddd74d115ccf7, type: 3}
   poisonParticlesPrefab: {fileID: 8799278658428971708, guid: 85aa2f8e5191a694195eebb6ff1ab892, type: 3}
+  meleeDamage:
+  - {fileID: 8300000, guid: 08bae2030cf737a4cbe45b0a4d8864cc, type: 3}
+  - {fileID: 8300000, guid: 26fb6b32917658e4898e714a8167ca31, type: 3}
+  - {fileID: 8300000, guid: d4bf74f33854e854ca86563f6444f30e, type: 3}
+  fireAudio:
+  - {fileID: 8300000, guid: 3eeb0775969879343bdb536ebd360e82, type: 3}
+  - {fileID: 8300000, guid: d8825e23604ec764c86119201ffa3488, type: 3}
+  - {fileID: 8300000, guid: 8b9ce275964f9b84997a92d55ab8bf5f, type: 3}
+  poisonAudio:
+  - {fileID: 8300000, guid: ef49d146e1037d6489c3c2f38f874867, type: 3}
+  thunderAudio:
+  - {fileID: 8300000, guid: cae5b1d13da7dc543a6f84a9df834d31, type: 3}
+  takeDamageAudio:
+  - {fileID: 8300000, guid: 114fde2a64b02334ca7ce9c13c1ca6ea, type: 3}
   greenbar: {fileID: 6767858438778791507}
   currentAttackDamage: 20
 --- !u!70 &31670381225739872

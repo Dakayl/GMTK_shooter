@@ -54,6 +54,16 @@ MonoBehaviour:
   fireParticlesPrefab: {fileID: 8799278658428971708, guid: 8d401be63350e24489be77346dd454fa, type: 3}
   thunderParticlesPrefab: {fileID: 8799278658428971708, guid: 7c55ed66b6f747a499fddd74d115ccf7, type: 3}
   poisonParticlesPrefab: {fileID: 8799278658428971708, guid: 85aa2f8e5191a694195eebb6ff1ab892, type: 3}
+  fireAudio:
+  - {fileID: 8300000, guid: 3eeb0775969879343bdb536ebd360e82, type: 3}
+  - {fileID: 8300000, guid: d8825e23604ec764c86119201ffa3488, type: 3}
+  - {fileID: 8300000, guid: 8b9ce275964f9b84997a92d55ab8bf5f, type: 3}
+  poisonAudio:
+  - {fileID: 8300000, guid: ef49d146e1037d6489c3c2f38f874867, type: 3}
+  thunderAudio:
+  - {fileID: 8300000, guid: cae5b1d13da7dc543a6f84a9df834d31, type: 3}
+  takeDamageAudio:
+  - {fileID: 8300000, guid: 114fde2a64b02334ca7ce9c13c1ca6ea, type: 3}
   greenbar: {fileID: 3780876255682713248}
   currentAttackDamage: 20
 --- !u!70 &7630392458286462611
@@ -91,11 +101,11 @@ MonoBehaviour:
   weaponRotationPoint: {fileID: 7607738141748660294}
   myStats: {fileID: 5979205912588268379}
   isStunned: 0
+  animator: {fileID: 7137931896105904058}
   meleeWeaponAnimator: {fileID: 7607738141161146589}
   hitBoxesLocation: []
   hitBoxesRange: []
   projectilePrefab: {fileID: 6062779982876408846, guid: 38bdac8abd2671542a71f769972d1163, type: 3}
-  animator: {fileID: 7137931896105904058}
 --- !u!50 &7630392458286462613
 Rigidbody2D:
   serializedVersion: 4

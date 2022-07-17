@@ -150,6 +150,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 6062779982876408846, guid: 7d5aab4e4b645214f8e36d20cd694f51, type: 3}
   destroyParticlePrefab: {fileID: 4071370034921819659, guid: 17d2a96914c101f4db3470b053b2f077, type: 3}
+  isPlayerBullet: 1
+  damage: 0
+  wallAudio:
+  - {fileID: 8300000, guid: caee027919a43644f866cf8e89e997bc, type: 3}
+  - {fileID: 8300000, guid: 20b1ffb62193a12428c143812f8111fb, type: 3}
+  - {fileID: 8300000, guid: 5a5fd99600477d5448d9787f1d4d7799, type: 3}
 --- !u!114 &-7691149183961411419
 MonoBehaviour:
   m_ObjectHideFlags: 0

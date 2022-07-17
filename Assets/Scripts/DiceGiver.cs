@@ -23,7 +23,7 @@ public class DiceGiver : MonoBehaviour
                 spriteRenderer.sprite = emptySprite;
             }
 
-            GameManager.Instance.OpenDoor();
+            //GameManager.Instance.OpenDoor();
         }
     }
         

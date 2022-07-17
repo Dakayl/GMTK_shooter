@@ -13,8 +13,6 @@ public class MusicPlayer : MonoBehaviour
     {            
         if (MusicPlayer.Instance == null)
         {
-            //dont destroy this instance
-            DontDestroyOnLoad(this);
             musicSource = gameObject.AddComponent<AudioSource>();
             //MusicPlayer is intended for small fx sounds
             musicSource.loop = true;

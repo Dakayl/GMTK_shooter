@@ -7,6 +7,7 @@ public class DiceRoll : MonoBehaviour
     [SerializeField] private DiceSide[] sides;
     [SerializeField] private Sprite[] possibleSprites;
     [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private AudioClip[] movingDice;
 
     private Rigidbody myRb;
     [HideInInspector]
@@ -73,6 +74,8 @@ public class DiceRoll : MonoBehaviour
         int newFaceId = 7 - sideId;
         Sprite sprite = sides[newFaceId-1].GetSprite();
         DiceFace face = myDice.ChangeCurrentFace(newFaceId, sprite);
+       
+  
         GetComponent<Animator>().Play("DiceDisparition");
     }
 
@@ -84,6 +87,11 @@ public class DiceRoll : MonoBehaviour
         Destroy(gameObject);
     }
 
+    IEnumerator SoundDice() {
+        yield return new WaitForSeconds(0.4f);
+        playRandomFromArray(movingDice, 0.8f);
+    }
+
     private void LaunchDice()
     {
         Vector3 direction;
@@ -93,6 +101,16 @@ public class DiceRoll : MonoBehaviour
         transform.position = new Vector3(0, 0, -10);
         myRb.AddForce(direction.normalized * 300);
         myRb.AddTorque(direction);
+        StartCoroutine(SoundDice());
+    }
+
+    public void playRandomFromArray(AudioClip[] listClips, float volume){
+        if(listClips.Length < 1) return;
+        int index = Random.Range(0, listClips.Length);
+        if(listClips[index] != null) {
+            AudioClip clip = listClips[index];
+            SoundPlayer.Play(clip, volume);
+        }
     }
 
 }

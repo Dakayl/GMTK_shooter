@@ -8,7 +8,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject fireParticlesPrefab;
     [SerializeField] private GameObject thunderParticlesPrefab;
     [SerializeField] private GameObject poisonParticlesPrefab;
-
+    [SerializeField] private AudioClip[] meleeDamage;
+    [SerializeField] private AudioClip[] fireAudio;
+    [SerializeField] private AudioClip[] poisonAudio;
+    [SerializeField] private AudioClip[] thunderAudio;
+    [SerializeField] private AudioClip[] takeDamageAudio;
+    
     [SerializeField] private GameObject greenbar;
     private bool isOnFire = false;
     private bool isOnPoison = false;
@@ -60,17 +65,20 @@ public class Enemy : MonoBehaviour
         myMovement.isStunned = true;
         GameObject myParticles = GameObject.Instantiate(thunderParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
+        playRandomFromArray(thunderAudio);
     }
 
     public void Unstun(){
         myMovement.isStunned = false;
         GameObject myParticles = GameObject.Instantiate(thunderParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
+        playRandomFromArray(thunderAudio);
     }
 
 
     public void TakeDamage(float amount)
     {
+        playRandomFromArray(takeDamageAudio , 0.1f);
         currentLifePoints -= amount;
         if(currentLifePoints <= 0)
         {
@@ -84,8 +92,9 @@ public class Enemy : MonoBehaviour
         TakeDamage(poisonStack * StatusPoisonEffect.damagePerStack);
         GameObject myParticles = GameObject.Instantiate(poisonParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
+        playRandomFromArray(poisonAudio);
     }
-
+    
     public void FireTick() {
         TakeDamage( StatusFireEffect.fireDamage);
         currentFireDuration -= StatusFireEffect.dotTickDuration;
@@ -93,8 +102,19 @@ public class Enemy : MonoBehaviour
             isOnFire = false;
             CancelInvoke("FireTick");
         }
+        playRandomFromArray(fireAudio);
+        
         GameObject myParticles = GameObject.Instantiate(fireParticlesPrefab, transform.position, new Quaternion());
         myParticles.GetComponent<ParticleSystem>().Emit(20);
+    }
+
+    public void playRandomFromArray(AudioClip[] listClips, float volume = 0.7f){
+        if(listClips.Length < 1) return;
+        int index = Random.Range(0, listClips.Length);
+        if(listClips[index] != null) {
+            AudioClip clip = listClips[index];
+            SoundPlayer.Play(clip, volume);
+        }
     }
 
     public void EletricTick() {
@@ -125,6 +145,9 @@ public class Enemy : MonoBehaviour
     public void DamagePlayer()
     {
         PlayerStats.Instance.TakeDamage(currentAttackDamage);
+        playRandomFromArray(meleeDamage, 0.7f);
     }
+
+    
 
 }

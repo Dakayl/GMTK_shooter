@@ -10,6 +10,10 @@ public class DiceRack : MonoBehaviour
     [SerializeField] private EffectWindowUI effectWindowUI;
     [SerializeField] private GameObject dice3DPrefab;
     [SerializeField] private Transform dice3DParent;
+    [SerializeField] private AudioClip oneDiceClip;
+    [SerializeField] private AudioClip twoDiceClip;
+    [SerializeField] private AudioClip threeDiceClip;
+    [SerializeField] private AudioClip fourDiceClip;
     public static DiceRack Instance { get; private set; } // Singleton
     private List<Dice> diceRack;
     private List<DiceFace> currentFaces;
@@ -125,7 +129,17 @@ public class DiceRack : MonoBehaviour
                 
             }
         }
+        if(diceRack.Count%4 == 0 ) SoundPlayer.Play(audio: oneDiceClip, 0.5f);
+        if(diceRack.Count%4 == 1 ) SoundPlayer.Play(audio: twoDiceClip, 0.5f);
+        if(diceRack.Count%4 == 2 ) SoundPlayer.Play(audio: threeDiceClip, 0.5f);
+        if(diceRack.Count%4 == 3 ) SoundPlayer.Play(audio: fourDiceClip, 0.5f);
     }
+    public void play(AudioClip clips, float volume){
+ 
+        
+        
+    }
+
 
     public void AddDice(Dice newDice){
         diceRack.Add(newDice);

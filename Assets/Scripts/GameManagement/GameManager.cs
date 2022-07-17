@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             }
         }
         SceneManager.LoadScene(nextLevelIndex);
-        playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
+        // playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
     }
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         currentLevel++;
         SceneManager.LoadScene(levelIndex);
-        playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
+       // playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
     }
