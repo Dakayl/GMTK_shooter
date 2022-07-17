@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     public static float attackPerLevel = 2;
     [HideInInspector] public float currentAttackDamage = 20;
     private EnemyMovement myMovement;
-
+   
     public void Awake() {
         myMovement = GetComponent<EnemyMovement>();
     }

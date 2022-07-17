@@ -119,7 +119,6 @@ public class DiceRack : MonoBehaviour
                 GameObject gameObjectDiceUI = diceUIList[index];
                 DiceUI ui = gameObjectDiceUI.GetComponent<DiceUI>();
                 if(ui && diceRack[index] != null) {
-                    Debug.Log(diceRack[index].ToString());
                     ui.sprite = diceRack[index].sprite; //TO DO verify diceRack[index] exists
                 }
                 gameObjectDiceUI.SetActive(true);
