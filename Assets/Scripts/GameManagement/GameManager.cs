@@ -41,10 +41,6 @@ public class GameManager : MonoBehaviour
 
         LoadNewLevel(firstLevelToLoad);
     }
-    private void Start()
-    {
-        
-    }
 
     public void Pause ()
     {
@@ -84,6 +80,17 @@ public class GameManager : MonoBehaviour
         {
             UIAnim.Play("ScreenTransition");
         }
+    }
+
+    public void NewDiceLaunch()
+    {
+        DiceRack.Instance.Reset();
+        DiceRack.Instance.RandomizeRealtime();
+    }
+
+    public void PlayerDeath()
+    {
+        UIAnim.Play("GameOver");
     }
 
     public void NewEnemyKilled()

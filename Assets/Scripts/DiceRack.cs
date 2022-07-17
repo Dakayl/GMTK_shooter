@@ -8,13 +8,23 @@ public class DiceRack : MonoBehaviour
 {
     [SerializeField] private GameObject diceUIPrefab;
     [SerializeField] private EffectWindowUI effectWindowUI;
+    [SerializeField] private GameObject dice3DPrefab;
+    [SerializeField] private Transform dice3DParent;
+    public static DiceRack Instance { get; private set; } // Singleton
     private List<Dice> diceRack;
     private List<DiceFace> currentFaces;
     private List<GameObject> diceUIList;
     public void Awake()
     {
-         
-          diceRack = new List<Dice>();
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple DiceRack Error");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
+        diceRack = new List<Dice>();
           Dice one = new Dice();
           one.CreateInteractionDice();
           AddDice(one);
@@ -37,10 +47,11 @@ public class DiceRack : MonoBehaviour
     public void Start()
     {
         
-          Reset();   
-          Randomize();
-          ShowDicesUI();
-          effectWindowUI.changeDices(diceRack);
+          Reset();
+        RandomizeRealtime();
+          //Randomize();
+          //ShowDicesUI();
+          //effectWindowUI.changeDices(diceRack);
     }
 
      // Update is called once per frame
@@ -87,16 +98,21 @@ public class DiceRack : MonoBehaviour
     }
 
     public void ShowDicesUI(){
-        for(int index = 0; index < diceUIList.Count; index++ ) {
-            DiceUI ui = diceUIList[index].GetComponent<DiceUI>();
-            if(ui) {
-                ui.text = diceRack[index].ToString(); //TO DO verify diceRack[index] exists
-            } 
+        if(diceUIList != null)
+        {
+            for(int index = 0; index < diceUIList.Count; index++ ) {
+                DiceUI ui = diceUIList[index].GetComponent<DiceUI>();
+                if(ui && diceRack[index] != null) {
+                    ui.text = diceRack[index].ToString(); //TO DO verify diceRack[index] exists
+                } 
+            }
         }
     }
 
     public void AddDice(Dice newDice){
         diceRack.Add(newDice);
+        ShowDicesUI();
+        effectWindowUI.changeDices(diceRack);
     }
 
     public void Reset(){
@@ -107,9 +123,25 @@ public class DiceRack : MonoBehaviour
     public void Randomize(){
         currentFaces = new List<DiceFace>();
         for(int index = 0; index < diceRack.Count; index++ ) {
-            DiceFace face = diceRack[index].SelectRandomFace();
+            DiceFace face = diceRack[index].SelectRandomFace(); //TODO Change to lancer de dé
             currentFaces.Add(face);
         }
+    }
+
+    public void RandomizeRealtime()
+    {
+        currentFaces = new List<DiceFace>();
+        for (int index = 0; index < diceRack.Count; index++)
+        {
+            GameObject dice3D = Instantiate(dice3DPrefab);
+            dice3D.transform.parent = dice3DParent;
+            dice3D.GetComponent<DiceRoll>().SetFaces(this, diceRack[index]);
+        }
+    }
+
+    public void NewCurrentFace(DiceFace face)
+    {
+        currentFaces.Add(face);
     }
 
     public override string ToString()

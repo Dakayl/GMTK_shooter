@@ -175,7 +175,7 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (!areInvicibilityFramesActive)
+        if (!areInvicibilityFramesActive && !isDead)
         {
             if(armor > 0) {
                 armor --;
@@ -184,10 +184,11 @@ public class PlayerStats : MonoBehaviour
             }
             currentHP -= amount;
             ActivateInvincinbilityFrames();
-            Debug.Log("HP LEFT : " + currentHP);
             if(currentHP <= 0)
             {
-                Debug.Log("PLAYER IS DEAD");
+                isDead = true;
+                
+                GameManager.Instance.PlayerDeath();
             }
         }
     }

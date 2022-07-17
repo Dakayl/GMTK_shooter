@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private float currentLifePoints = 100;
     private float baseAttackDamage = 18;
     public static float attackPerLevel = 2;
-     private float currentAttackDamage = 20;
+    private float currentAttackDamage = 20;
     private EnemyMovement myMovement;
 
     public void Awake() {

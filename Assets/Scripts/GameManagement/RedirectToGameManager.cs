@@ -9,11 +9,6 @@ public class RedirectToGameManager : MonoBehaviour
         GameManager.Instance.LoadNewLevel();
     }
 
-    public void LoadNewLevel(int value)
-    {
-        GameManager.Instance.LoadNewLevel(value);
-    }
-
     public void GoToNextFloor()
     {
         GameManager.Instance.GoToNextFloor();
@@ -22,5 +17,10 @@ public class RedirectToGameManager : MonoBehaviour
     public void NewEnemyKilled()
     {
         GameManager.Instance.NewEnemyKilled();
+    }
+
+    public void NewDiceLaunch()
+    {
+        GameManager.Instance.NewDiceLaunch();
     }
 }
