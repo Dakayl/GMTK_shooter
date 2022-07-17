@@ -34,9 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if(collision.gameObject.tag == "DiceGiver"){
-            Debug.Log("DIIICE GIVER");
             DiceGiver diceGiver = collision.gameObject.GetComponent<DiceGiver>();
             diceGiver.GiveDice();
         }
