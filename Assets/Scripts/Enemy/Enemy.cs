@@ -21,10 +21,10 @@ public class Enemy : MonoBehaviour
     private float currentFireDuration = 0;
     private float currentElectricDuration = 0;
     public static float baselifePoints = 95;
-    public static float lifePointsPerLevel = 5;
+    public static float lifePointsPerLevel = 6;
     private float currentLifePoints = 100;
     private float baseAttackDamage = 18;
-    public static float attackPerLevel = 2;
+    public static float attackPerLevel = 3;
     [HideInInspector] public float currentAttackDamage = 20;
     private EnemyMovement myMovement;
    
