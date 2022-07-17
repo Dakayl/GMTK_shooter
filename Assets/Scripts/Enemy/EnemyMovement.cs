@@ -239,12 +239,4 @@ public class EnemyMovement : MonoBehaviour
         canMove = true;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        for (int i = 0; i < hitBoxesLocation.Length; i++)
-        {
-            Gizmos.DrawSphere(hitBoxesLocation[i].position, hitBoxesRange[i]);
-        }
-    }
 }

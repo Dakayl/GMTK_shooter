@@ -49,6 +49,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot(float angle = 0)
     {
+        CinemachineShake.Instance.ShakeCamera(0.7f,0.1f);
+
         GameObject bullet = Instantiate(projectilePrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
         bulletRB.AddForce(bulletSpawnPoint.right * bulletForce, ForceMode2D.Impulse);

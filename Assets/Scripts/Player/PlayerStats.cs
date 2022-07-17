@@ -184,6 +184,7 @@ public class PlayerStats : MonoBehaviour
             }
             currentHP -= amount;
             ActivateInvincinbilityFrames();
+            CinemachineShake.Instance.ShakeCamera(0.7f, 0.2f);
             if(currentHP <= 0)
             {
                 isDead = true;
