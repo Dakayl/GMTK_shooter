@@ -729,7 +729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &117485298
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1977,7 +1977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2880482532864148621, guid: 0da40b6f641390642b35dd37e07048bd, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7779427
+      value: 1.7775736
       objectReference: {fileID: 0}
     - target: {fileID: 2880482532864148621, guid: 0da40b6f641390642b35dd37e07048bd, type: 3}
       propertyPath: m_Lens.OrthographicSize
