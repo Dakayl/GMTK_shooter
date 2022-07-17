@@ -218,11 +218,7 @@ Transform:
   - {fileID: 2032715773}
   - {fileID: 671370879}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 4
-=======
   m_RootOrder: 3
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671370878
 GameObject:
@@ -843,9 +839,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49639702, y: 1.6389349}
   m_EdgeRadius: 0
-<<<<<<< Updated upstream
---- !u!1 &1426994774
-=======
 --- !u!1 &1202091468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1005,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2016737999
->>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
