@@ -1,21 +1,29 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 public class SoundPlayer : MonoBehaviour
 {
     //static instance of the Player to check if we should keep or delete new instances
     protected static SoundPlayer Instance;
     protected static float globalVolume = 1.0f;
-    protected static AudioSource soundSource;
+    protected static List<AudioSource> soundSource;
+
+
+    protected static int soundPlayed = 0;
     protected void Start()
-    {            
+    {       
+             
         if (SoundPlayer.Instance == null)
         {
-            //dont destroy this instance
-            DontDestroyOnLoad(this);
-            soundSource = gameObject.AddComponent<AudioSource>();
-            //SoundPlayer is intended for small fx sounds
-            soundSource.loop = false;
-            soundSource.volume = RangeVolume(globalVolume);
+            soundSource = new List<AudioSource>();
+            for(int index = 0; index < 6; index++) {
+                AudioSource source = gameObject.AddComponent<AudioSource>();
+                source.loop = false;
+                source.volume = RangeVolume(globalVolume);
+                soundSource.Add(source);
+            }
+            
+     
             //save a reference to this instance in the static variable
             SoundPlayer.Instance = this;
         }
@@ -34,9 +42,12 @@ public class SoundPlayer : MonoBehaviour
 
     // Use : SoundPlayer.Play(myClip) or SoundPlayer.Play(myClip, theVolume)
     public static void Play(AudioClip audio, float specificVolume = 1f) {
-        soundSource.volume = globalVolume * RangeVolume(specificVolume);
-        soundSource.clip = audio;
-        soundSource.Play();
+        
+        int index = soundPlayed%6;
+        soundSource[index].volume = globalVolume * RangeVolume(specificVolume);
+        soundSource[index].clip = audio;
+        soundSource[index].Play();
+        soundPlayed++;
     }
 
     // Use : SoundPlayer.volume = 1.0f;

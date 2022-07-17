@@ -10,11 +10,21 @@ public class PlayerShooting : MonoBehaviour
     private GameObject projectilePrefab;
     [SerializeField]
     private float bulletForce = 2f;
+    [SerializeField] private AudioClip[] shootAudio;
     private float deviationAngle = 0.15f;
 
     private bool isCoolingDown = false;
     private float coolDownTimer = 0f;
     private bool canShoot = true;
+
+     public void playRandomFromArray(AudioClip[] listClips, float volume){
+        if(listClips.Length < 1) return;
+        int index = Random.Range(0, listClips.Length);
+        if(listClips[index] != null) {
+            AudioClip clip = listClips[index];
+            SoundPlayer.Play(clip, volume);
+        }
+    }
 
     private void Update()
     {
@@ -28,8 +38,10 @@ public class PlayerShooting : MonoBehaviour
                     if(PlayerStats.Instance.isTwoBulletsActivated) {
                         Shoot(-deviationAngle);
                         Shoot(+deviationAngle);
+                        playRandomFromArray(shootAudio, 0.6f);
                     } else {
                         Shoot();  
+                        playRandomFromArray(shootAudio, 0.4f);
                     }
                     isCoolingDown = true;
                 }

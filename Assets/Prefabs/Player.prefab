@@ -777,6 +777,8 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 7718153283711107749}
   projectilePrefab: {fileID: 6062779982876408846, guid: 637c4e3f40fe08f4fb1f26523d6269e0, type: 3}
   bulletForce: 12
+  shootAudio:
+  - {fileID: 8300000, guid: 114fde2a64b02334ca7ce9c13c1ca6ea, type: 3}
 --- !u!70 &7718153283945890330
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

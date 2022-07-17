@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     private bool isPoisonBullet;
     private bool isElectricBullet;
     [HideInInspector] public float damage;
+    [SerializeField] private AudioClip[] wallAudio;
     private float lifeDuration = 2.9f;
     
 
@@ -62,6 +63,16 @@ public class Bullet : MonoBehaviour
             }
         }
     }
+
+    public void playRandomFromArray(AudioClip[] listClips, float volume){
+        if(listClips.Length < 1) return;
+        int index = Random.Range(0, listClips.Length);
+        if(listClips[index] != null) {
+            AudioClip clip = listClips[index];
+            SoundPlayer.Play(clip, volume);
+        }
+    }
+
     public void Update(){
         //checkRange
         lifeDuration -= Time.deltaTime;
@@ -114,7 +125,7 @@ public class Bullet : MonoBehaviour
     }
 
     public void OnWallCollision(){
-       
+       playRandomFromArray(wallAudio, 0.6f);
     }
 
     public void Bounce(Collider2D collision){
