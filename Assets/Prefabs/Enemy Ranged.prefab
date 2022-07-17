@@ -54,6 +54,7 @@ MonoBehaviour:
   fireParticlesPrefab: {fileID: 8799278658428971708, guid: 8d401be63350e24489be77346dd454fa, type: 3}
   thunderParticlesPrefab: {fileID: 8799278658428971708, guid: 7c55ed66b6f747a499fddd74d115ccf7, type: 3}
   poisonParticlesPrefab: {fileID: 8799278658428971708, guid: 85aa2f8e5191a694195eebb6ff1ab892, type: 3}
+  meleeDamage: []
   fireAudio:
   - {fileID: 8300000, guid: 3eeb0775969879343bdb536ebd360e82, type: 3}
   - {fileID: 8300000, guid: d8825e23604ec764c86119201ffa3488, type: 3}
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3780876255682713248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6726823985259272801}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
