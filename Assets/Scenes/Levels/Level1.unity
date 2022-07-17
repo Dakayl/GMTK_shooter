@@ -689,12 +689,12 @@ GameObject:
   - component: {fileID: 1169365342}
   - component: {fileID: 1169365341}
   m_Layer: 0
-  m_Name: Tilemap_Map_1_Dice
+  m_Name: Tilemap_Map_1_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1169365340
 Transform:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ Tilemap:
   m_GameObject: {fileID: 1169365339}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: 4, y: 1, z: 0}
+  - first: {x: 10, y: 1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 43
@@ -867,7 +867,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 250f9b7038c07bd4b9ecba53505bfda2, type: 2}
+    m_Data: {fileID: 11400000, guid: d5ec38477107252468a5d6e455838d5b, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -956,7 +956,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: d633dc6893733e84199fdbba7d0b1d6c, type: 3}
+    m_Data: {fileID: 966917787, guid: 43257d46b59daf34cb59401da65e0e11, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -4164,6 +4164,10 @@ PrefabInstance:
     - target: {fileID: 5953344835994619973, guid: d700ebcfa24905b49b12ca8eecb816eb, type: 3}
       propertyPath: m_Name
       value: DiceGiver
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953344835994619973, guid: d700ebcfa24905b49b12ca8eecb816eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
