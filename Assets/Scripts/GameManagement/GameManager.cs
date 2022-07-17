@@ -20,11 +20,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerShooting playerShooting ;
 
+    [SerializeField]
+    private AudioClip[] musics;
+
     [HideInInspector]
     public int currentLevel = 0;
     [HideInInspector]
     public int enemyKilled = 0;
-
     private int lastLevelIndex;
     private int enemyInLevel = 0;
     private int enemyKilledInLevel = 0;
@@ -104,6 +106,7 @@ public class GameManager : MonoBehaviour
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
         lastLevelIndex = nextLevelIndex;
+        PlayMusic();
     }
     public void LoadNewLevel(int levelIndex)
     {
@@ -120,6 +123,22 @@ public class GameManager : MonoBehaviour
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
         lastLevelIndex = levelIndex;
+        PlayMusic();
+    }
+
+    public void PlayMusic() {
+        switch(currentLevel) {
+            case 1: 
+                MusicPlayer.Instance.Play(musics[0]); break;
+            case 2: 
+                MusicPlayer.Instance.Play(musics[1]); break;
+            case 3: 
+                MusicPlayer.Instance.Play(musics[2]); break;
+            case 4: 
+                MusicPlayer.Instance.Play(musics[3]); break;
+            default: 
+                MusicPlayer.Instance.Play(musics[4]); break;
+        }
     }
 
     public void GoToNextFloor()
