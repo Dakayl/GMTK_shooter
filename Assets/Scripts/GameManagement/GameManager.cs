@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadNewLevel(firstLevelToLoad);
+        UIAnim.Play("WelcomeUI");
     }
 
     private void Update()
@@ -63,6 +64,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Trying my best");
                 UIAnim.Play("Reset");
             }
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            UIAnim.Play("ScreenTransition");
         }
     }
 
@@ -78,26 +83,43 @@ public class GameManager : MonoBehaviour
     public void LoadNewLevel()
     {
         currentLevel++;
-        int nextLevelIndex = Random.Range(1, SceneManager.sceneCount);
-        if(SceneManager.sceneCount -1 > 1)
+        int nextLevelIndex;
+        if (currentLevel <= 3)
         {
-            while (nextLevelIndex == lastLevelIndex)
-            {
-                nextLevelIndex = Random.Range(1,SceneManager.sceneCount);
-            }
+            nextLevelIndex = lastLevelIndex + 1;
+        }
+        else
+        {
+            nextLevelIndex = Random.Range(4,7);
         }
         SceneManager.LoadScene(nextLevelIndex);
-        playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
+        if(currentLevel == 1)
+        {
+            playerStats.gameObject.transform.position = new Vector3(-4, 0, -1);
+        }
+        else
+        {
+            playerStats.gameObject.transform.position = new Vector3(-7.5f, -1.5f, -1);
+        }
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
+        lastLevelIndex = nextLevelIndex;
     }
     public void LoadNewLevel(int levelIndex)
     {
         currentLevel++;
         SceneManager.LoadScene(levelIndex);
-        playerStats.gameObject.transform.position = GameObject.Find("PlayerStartPosition").transform.position;
+        if (currentLevel == 1)
+        {
+            playerStats.gameObject.transform.position = new Vector3(-4, 0, -1);
+        }
+        else
+        {
+            playerStats.gameObject.transform.position = new Vector3(-7.5f, -1.5f, -1);
+        }
         enemyInLevel = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemyKilledInLevel = 0;
+        lastLevelIndex = levelIndex;
     }
 
     public void GoToNextFloor()
@@ -139,6 +161,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         isDead = false;
+        DiceRack.Instance.ResetDice();
         playerMovement.setMovement(true);
         playerShooting.setShooting(true);
         playerStats.ResetStats();

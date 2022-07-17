@@ -131,6 +131,10 @@ public class DiceRack : MonoBehaviour
         diceRack.Add(newDice);
         
     }    
+    public void ResetDice()
+    {
+        diceRack = new List<Dice>();
+    }
 
     public void RandomizeRealtime()
     {
