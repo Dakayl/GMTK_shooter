@@ -105,7 +105,9 @@ public class GameManager : MonoBehaviour
 
     public void NewDiceLaunch()
     {
-        DiceRack.Instance.Reset();
+        //DiceRack.Instance.Reset();
+        if(PlayerStats.Instance != null)
+            PlayerStats.Instance.ResetStats();
         DiceRack.Instance.RandomizeRealtime();
     }
 

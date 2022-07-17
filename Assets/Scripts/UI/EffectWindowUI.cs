@@ -29,7 +29,7 @@ public class EffectWindowUI : MonoBehaviour
             GameObject dicePanel = Instantiate(dicePanelPrefab);
             DicePanelUI ui = dicePanel.GetComponent<DicePanelUI>();
             if(ui) {
-                ui.icon = diceRack[index].ToString();
+                ui.sprite = diceRack[index].sprite;
                 ui.title = diceRack[index].getTitle();
                 ui.effect = diceRack[index].getHtmlText();
             }

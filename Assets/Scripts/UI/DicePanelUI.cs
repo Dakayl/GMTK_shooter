@@ -21,12 +21,12 @@ public class DicePanelUI : MonoBehaviour
         
     }
 
-    public string icon {
+    public Sprite sprite  {
         get {
-            return diceUI.text;
+            return diceUI.sprite;
         }
         set {
-            diceUI.text = value;
+            diceUI.sprite = value;
         }
     }
 

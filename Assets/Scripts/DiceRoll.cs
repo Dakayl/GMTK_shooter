@@ -12,7 +12,6 @@ public class DiceRoll : MonoBehaviour
     [HideInInspector]
     public Vector3 diceVelocity;
     private Dice myDice;
-    private DiceRack myRack;
 
     private void Start()
     {
@@ -26,55 +25,55 @@ public class DiceRoll : MonoBehaviour
         diceVelocity = myRb.velocity;
     }
 
-    public void SetFaces(DiceRack theRack, Dice theDice)
+    public void SetFaces(Dice theDice)
     {
-        myRack = theRack;
-        myDice = theDice;
 
+        myDice = theDice;
         switch (myDice.diceType)
         {
             case 4:
-                sides[0].SetSprite(possibleSprites[0], 1);
-                sides[1].SetSprite(possibleSprites[1], 2);
-                sides[2].SetSprite(possibleSprites[2], 3);
-                sides[3].SetSprite(possibleSprites[2], 4);
-                sides[4].SetSprite(possibleSprites[1], 5);
-                sides[5].SetSprite(possibleSprites[0], 6);
+                sides[0].SetSprite(possibleSprites[0], 1); // Two Bullets
+                sides[1].SetSprite(possibleSprites[1], 2); // Armor
+                sides[2].SetSprite(possibleSprites[2], 3); // Dracula
+                sides[3].SetSprite(possibleSprites[2], 4); // Dracula
+                sides[4].SetSprite(possibleSprites[1], 5); // Armor
+                sides[5].SetSprite(possibleSprites[0], 6); // Two Bullets
                 break;
             case 1:
-                sides[0].SetSprite(possibleSprites[3], 1);
-                sides[1].SetSprite(possibleSprites[4], 2);
-                sides[2].SetSprite(possibleSprites[5], 3);
-                sides[3].SetSprite(possibleSprites[5], 4);
-                sides[4].SetSprite(possibleSprites[4], 5);
-                sides[5].SetSprite(possibleSprites[3], 6);
+                sides[0].SetSprite(possibleSprites[3], 1); //Bounce
+                sides[1].SetSprite(possibleSprites[4], 2); //Explode
+                sides[2].SetSprite(possibleSprites[5], 3); //Pierce
+                sides[3].SetSprite(possibleSprites[5], 4); //Pierce
+                sides[4].SetSprite(possibleSprites[4], 5); //Explode
+                sides[5].SetSprite(possibleSprites[3], 6); //Bounce
                 break;
             case 2:
-                sides[0].SetSprite(possibleSprites[6], 1);
-                sides[1].SetSprite(possibleSprites[7], 2);
-                sides[2].SetSprite(possibleSprites[8], 3);
-                sides[3].SetSprite(possibleSprites[8], 4);
-                sides[4].SetSprite(possibleSprites[7], 5);
-                sides[5].SetSprite(possibleSprites[6], 6);
+                sides[0].SetSprite(possibleSprites[6], 1); //Range
+                sides[1].SetSprite(possibleSprites[7], 2); //Size
+                sides[2].SetSprite(possibleSprites[8], 3); //Speed
+                sides[3].SetSprite(possibleSprites[8], 4); //Speed
+                sides[4].SetSprite(possibleSprites[7], 5); //Size
+                sides[5].SetSprite(possibleSprites[6], 6); //Range
                 break;
             case 3:
             default:
-                sides[0].SetSprite(possibleSprites[9], 1);
-                sides[1].SetSprite(possibleSprites[10], 2);
-                sides[2].SetSprite(possibleSprites[11], 3);
-                sides[3].SetSprite(possibleSprites[11], 4);
-                sides[4].SetSprite(possibleSprites[10], 5);
-                sides[5].SetSprite(possibleSprites[9], 6);
+                sides[0].SetSprite(possibleSprites[9], 1); //Elec
+                sides[1].SetSprite(possibleSprites[10], 2); //Fire
+                sides[2].SetSprite(possibleSprites[11], 3); //Poison
+                sides[3].SetSprite(possibleSprites[11], 4); //Poison
+                sides[4].SetSprite(possibleSprites[10], 5); //Fire
+                sides[5].SetSprite(possibleSprites[9], 6); //Elec
                 break;
         }
     }
 
     public void FaceDownSide(int sideId)
     {
-        Debug.Log("I'm a dice and I'm down");
         // Get the opposite dice side
-        myDice.ChangeCurrentFace(7 - sideId);
-
+        int newFaceId = 7 - sideId;
+        Sprite sprite = sides[newFaceId-1].GetSprite();
+         Debug.Log("I'm a dice and I'm down "+newFaceId);
+        DiceFace face = myDice.ChangeCurrentFace(newFaceId, sprite);
         GetComponent<Animator>().Play("DiceDisparition");
     }
 

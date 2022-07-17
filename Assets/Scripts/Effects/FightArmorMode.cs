@@ -4,13 +4,14 @@ public class FightArmorMode:IDiceEffect {
 
     public void ActivateEffect()
     {
+      
         PlayerStats.Instance.armor += bonusArmor;
     }
     public string getTitle() {
         return "Fight Mode";
     }
     public string getHtmlText() {
-        return "Armor mode : Receive less damages ";
+        return string.Format("Armor mode : Receive no damages <b>{0}</b> times.", bonusArmor);
     }
     public override string ToString()
     {

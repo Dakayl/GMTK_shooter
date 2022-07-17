@@ -10,7 +10,7 @@ public class ShootSizeEffect:IDiceEffect {
         return "Projectile Upgrade";
     }
     public string getHtmlText() {
-        return "Your bullets are  <b>bigger</b> !";
+        return string.Format("Your bullets are {0}% <b>bigger</b> !", bonusSize*100);
     }
     public override string ToString()
     {

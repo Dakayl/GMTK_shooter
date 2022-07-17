@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class DiceUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textMeshPro;
+    [SerializeField] private Image image;
     // Start is called before the first frame update
 
-    public string text {
+   public Sprite sprite {
         get {
-            return textMeshPro.text;
+            return image.sprite;
         }
         set {
-            textMeshPro.text = value;
+            image.sprite = value;
         }
     }
 

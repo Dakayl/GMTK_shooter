@@ -11,7 +11,7 @@ public class StatusPoisonEffect:IDiceEffect {
         return "Damage Type";
     }
     public string getHtmlText() {
-        return string.Format("Stack <b>{0} poison</b> per hit, damages apply every <b>{1} sec</b>", stackNumber, dotTickDuration);
+        return string.Format("Add <b>{0} poison stack</b> per hit, stack apply damage every <b>{1} sec</b>.", stackNumber, dotTickDuration);
     }
     public override string ToString()
     {

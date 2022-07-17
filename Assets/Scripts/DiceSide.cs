@@ -38,4 +38,9 @@ public class DiceSide : MonoBehaviour
         mySprite.sprite = theSprite;
         sideId = myId;
     }
+
+     public Sprite GetSprite()
+    {
+        return mySprite.sprite;
+    }
 }

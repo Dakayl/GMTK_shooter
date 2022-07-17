@@ -9,7 +9,7 @@ public class StatusElectricityEffect:IDiceEffect {
         return "Damage Type";
     }
     public string getHtmlText() {
-        return string.Format("Stun the target for <b>{0}</b> sec per hit. Duration is stackable", duration);
+        return string.Format("Stun the target for <b>{0}</b> sec per hit. Duration is stackable.", duration);
     }
     public override string ToString()
     {

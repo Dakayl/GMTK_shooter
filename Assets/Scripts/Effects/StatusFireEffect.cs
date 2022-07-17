@@ -11,7 +11,7 @@ public class StatusFireEffect:IDiceEffect {
         return "Damage Type";
     }
     public string getHtmlText() {
-        return string.Format("Deal <b>{0}</b> fire damage each {1} sec, during {2} sec. Duration is stackable", fireDamage, dotTickDuration, fullDuration);
+        return string.Format("Deal <b>{0}</b> fire damage each {1} sec, during {2} sec. Duration is stackable.", fireDamage, dotTickDuration, fullDuration);
     }
     public override string ToString()
     {

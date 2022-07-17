@@ -9,7 +9,7 @@ public class FightDraculaMode:IDiceEffect {
         return "Fight Mode";
     }
     public string getHtmlText() {
-        return "Dracula mode : Shoot and regain health";
+        return string.Format("Leech : Shoot and regain {0}% of damages as health.", percentageOfLife*100);
     }
     public override string ToString()
     {
