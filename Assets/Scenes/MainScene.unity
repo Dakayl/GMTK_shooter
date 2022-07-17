@@ -3801,6 +3801,12 @@ MonoBehaviour:
   playerStats: {fileID: 2006063592}
   playerMovement: {fileID: 2006063591}
   playerShooting: {fileID: 2006063590}
+  musics:
+  - {fileID: 8300000, guid: ed2943b9924a56e4080ddd1f85d9c067, type: 3}
+  - {fileID: 8300000, guid: 37aaab7dcb68040419869c7e21d603cc, type: 3}
+  - {fileID: 8300000, guid: 5762040e831bc4c4798a16f9d30671d2, type: 3}
+  - {fileID: 8300000, guid: 9fac4a0fb35b164449adbcaa4f40fdb6, type: 3}
+  - {fileID: 8300000, guid: afda22f379bd3c94baad1f9e274fd7d1, type: 3}
   currentLevel: 0
   enemyKilled: 0
 --- !u!4 &1236782831

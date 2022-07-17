@@ -3,13 +3,13 @@ using System.Collections;
 public class MusicPlayer : MonoBehaviour
 {
     //static instance of the Player to check if we should keep or delete new instances
-    protected static MusicPlayer Instance;
+    public static MusicPlayer Instance;
     protected static float globalVolume = 1.0f;
     protected static AudioSource musicSource;
     private const float fadeOutDuration = 1.2f;
     private const float fadeInDuration = 1.2f;  
     private static AudioClip nextMusicClip;
-    protected void Start()
+    protected void Awake()
     {            
         if (MusicPlayer.Instance == null)
         {
@@ -67,7 +67,7 @@ public class MusicPlayer : MonoBehaviour
     public void Play(AudioClip audioClip) {
         if(audioClip != null) {
             nextMusicClip = audioClip;
-            StartCoroutine(this.FadeOut());
+            StartCoroutine(FadeOut());
         }
     }
     // Use : MusicPlayer.volume = 1.0f;
